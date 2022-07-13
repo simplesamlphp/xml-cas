@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\CAS\XML\cas;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\Proxies;
+use SimpleSAML\CAS\XML\cas\Proxy;
 use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Exception\MissingElementException;
@@ -58,12 +59,12 @@ final class ProxiesTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $list = Proxy::fromXML($this->xmlRepresentation->documentElement);
+        $list = Proxies::fromXML($this->xmlRepresentation->documentElement);
 
-        $entries = $list->getProxies();
+        $entries = $list->getProxy();
         $this->assertCount(2, $entries);
 
-        $this->assertEquals('https://example.org/proxy/1', $entries[0]);
-        $this->assertEquals('https://example.org/proxy/2', $entries[1]);
+        $this->assertEquals('https://example.org/proxy/1', $entries[0]->getContent());
+        $this->assertEquals('https://example.org/proxy/2', $entries[1]->getContent());
     }
 }

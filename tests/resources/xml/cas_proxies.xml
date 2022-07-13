@@ -1,0 +1,4 @@
+<cas:proxies xmlns:cas="http://www.yale.edu/tp/cas">
+  <cas:proxy>https://example.org/proxy/1</cas:proxy>
+  <cas:proxy>https://example.org/proxy/2</cas:proxy>
+</cas:proxies>
