@@ -1,0 +1,1 @@
+<cas:proxyFailure xmlns:cas="http://www.yale.edu/tp/cas" code="INVALID_REQUEST">some text</cas:proxyFailure>
