@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\CAS\Test\CAS\XML\IsFromNewLogin;
+namespace SimpleSAML\CAS\Test\XML\cas;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
