@@ -7,6 +7,7 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\Exception\MissingAttributeException;
 use SimpleSAML\XML\XMLStringElementTrait;
 
 /**
@@ -90,10 +91,13 @@ class AuthenticationFailure extends AbstractCasElement implements ResponseInterf
     {
         Assert::same($xml->localName, 'authenticationFailure', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ProxyFailure::NS, InvalidDOMElementException::class);
+        Assert::true(
+            $xml->hasAttribute('code'),
+            'Missing code from ' . static::getLocalName(),
+            MissingAttributeException::class,
+        );
 
-        $code = self::getAttribute($xml, 'code');
-
-        return new self(trim($xml->textContent), $code);
+        return new self(trim($xml->textContent), self::getAttribute($xml, 'code'));
     }
 
 

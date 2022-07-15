@@ -40,7 +40,7 @@ class Attributes extends AbstractCasElement
     /**
      * Initialize a cas:attributes element
      *
-     * @param \SimpleSAML\CAS\XML\cas\AuthencationDate $authenticationDate
+     * @param \SimpleSAML\CAS\XML\cas\AuthenticationDate $authenticationDate
      * @param \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
      * @param \SimpleSAML\CAS\XML\cas\IsFromNewLogin $isFromNewLogin
      * @param \SimpleSAML\XML\Chunk[] $elts
