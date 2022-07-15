@@ -6,6 +6,7 @@ namespace SimpleSAML\CAS\Test\CAS\XML\User;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\CAS\XML\cas\AuthenticationFailure;
 use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -43,7 +44,7 @@ final class AuthenticationFailureTest extends TestCase
     {
         $authenticationFailure = new AuthenticationFailure(
             'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
-            'INVALID_TICKET'
+            C::ERR_INVALID_TICKET
         );
 
         $authenticationFailureElement = $authenticationFailure->toXML();
@@ -51,7 +52,7 @@ final class AuthenticationFailureTest extends TestCase
             'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
             $authenticationFailureElement->textContent
         );
-        $this->assertEquals('INVALID_TICKET', $authenticationFailureElement->getAttribute('code'));
+        $this->assertEquals(C::ERR_INVALID_TICKET, $authenticationFailureElement->getAttribute('code'));
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
@@ -70,6 +71,6 @@ final class AuthenticationFailureTest extends TestCase
             'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
             $authenticationFailure->getContent()
         );
-        $this->assertEquals('INVALID_TICKET', $authenticationFailure->getCode());
+        $this->assertEquals(C::ERR_INVALID_TICKET, $authenticationFailure->getCode());
     }
 }

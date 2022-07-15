@@ -6,6 +6,7 @@ namespace SimpleSAML\CAS\Test\CAS\XML\User;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\CAS\XML\cas\ProxyFailure;
 use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -41,11 +42,11 @@ final class ProxyFailureTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $proxyFailure = new ProxyFailure('some text', 'INVALID_REQUEST');
+        $proxyFailure = new ProxyFailure('some text', C::ERR_INVALID_REQUEST);
 
         $proxyFailureElement = $proxyFailure->toXML();
         $this->assertEquals('some text', $proxyFailureElement->textContent);
-        $this->assertEquals('INVALID_REQUEST', $proxyFailureElement->getAttribute('code'));
+        $this->assertEquals(C::ERR_INVALID_REQUEST, $proxyFailureElement->getAttribute('code'));
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
@@ -61,6 +62,6 @@ final class ProxyFailureTest extends TestCase
         $proxyFailure = ProxyFailure::fromXML($this->xmlRepresentation->documentElement);
 
         $this->assertEquals('some text', $proxyFailure->getContent());
-        $this->assertEquals('INVALID_REQUEST', $proxyFailure->getCode());
+        $this->assertEquals(C::ERR_INVALID_REQUEST, $proxyFailure->getCode());
     }
 }
