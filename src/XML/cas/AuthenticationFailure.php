@@ -14,7 +14,7 @@ use SimpleSAML\XML\XMLStringElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class AuthenticationFailure extends AbstractCasElement
+class AuthenticationFailure extends AbstractCasElement implements ResponseInterface
 {
     use XMLStringElementTrait;
 

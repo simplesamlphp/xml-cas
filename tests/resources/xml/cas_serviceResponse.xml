@@ -1,0 +1,13 @@
+<cas:serviceResponse xmlns:cas="http://www.yale.edu/tp/cas">
+  <cas:authenticationSuccess>
+    <cas:user>username</cas:user>
+    <cas:attributes>
+      <cas:authenticationDate>2015-11-12T09:30:10Z</cas:authenticationDate>
+      <cas:longTermAuthenticationRequestTokenUsed>true</cas:longTermAuthenticationRequestTokenUsed>
+      <cas:isFromNewLogin>true</cas:isFromNewLogin>
+      <cas:myAttribute>myValue</cas:myAttribute>
+    </cas:attributes>
+    <cas:proxyGrantingTicket>PGTIOU-84678-8a9d...</cas:proxyGrantingTicket>
+  </cas:authenticationSuccess>
+</cas:serviceResponse>
+

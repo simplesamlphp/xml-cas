@@ -15,7 +15,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
  *
  * @package simplesamlphp/cas
  */
-class AuthenticationSuccess extends AbstractCasElement
+class AuthenticationSuccess extends AbstractCasElement implements ResponseInterface
 {
     /** @var string */
     public const LOCALNAME = 'authenticationSuccess';
