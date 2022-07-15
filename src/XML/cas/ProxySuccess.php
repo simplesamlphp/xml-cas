@@ -29,7 +29,8 @@ class ProxySuccess extends AbstractCasElement implements ResponseInterface
      *
      * @param \SimpleSAML\CAS\XML\cas\ProxyTicket $proxyTicket
      */
-    public function __construct(ProxyTicket $proxyTicket) {
+    public function __construct(ProxyTicket $proxyTicket)
+    {
         $this->setProxyTicket($proxyTicket);
     }
 
@@ -58,8 +59,10 @@ class ProxySuccess extends AbstractCasElement implements ResponseInterface
      * @param \DOMElement $xml The XML element we should load.
      * @return self
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingAttributeException if the supplied element is missing any of the mandatory attributes
+     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     *   if the qualified name of the supplied element is wrong
+     * @throws \SimpleSAML\XML\Exception\MissingAttributeException
+     *   if the supplied element is missing any of the mandatory attributes
      */
     public static function fromXML(DOMElement $xml): object
     {

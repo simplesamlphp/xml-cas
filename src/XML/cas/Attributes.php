@@ -119,8 +119,10 @@ class Attributes extends AbstractCasElement
      * @param \DOMElement $xml The XML element we should load
      * @return \SimpleSAML\CAS\XML\cas\Attributes
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingAttributeException if the supplied element is missing one of the mandatory attributes
+     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     *   if the qualified name of the supplied element is wrong
+     * @throws \SimpleSAML\XML\Exception\MissingAttributeException
+     *   if the supplied element is missing one of the mandatory attributes
      */
     public static function fromXML(DOMElement $xml): object
     {
@@ -155,7 +157,7 @@ class Attributes extends AbstractCasElement
         foreach ($xml->childNodes as $elt) {
             if (!($elt instanceof DOMElement)) {
                 continue;
-            } else if ($elt->namespaceURI === C::NS_CAS) {
+            } elseif ($elt->namespaceURI === C::NS_CAS) {
                 switch ($elt->localName) {
                     case 'authenticationDate':
                     case 'longTermAuthenticationRequestTokenUsed':

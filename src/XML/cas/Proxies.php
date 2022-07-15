@@ -61,7 +61,8 @@ class Proxies extends AbstractCasElement
      * @param \DOMElement $xml The XML element we should load
      * @return \SimpleSAML\CAS\XML\cas\Proxies
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException if the qualified name of the supplied element is wrong
+     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     *  if the qualified name of the supplied element is wrong
      * @throws \SimpleSAML\XML\Exception\MissingElementException if one of the mandatory child-elements is missing
      * @throws \SimpleSAML\XML\Exception\TooManyElementsException if too many child-elements of a type are specified
      */

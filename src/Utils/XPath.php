@@ -29,4 +29,3 @@ class XPath extends \SimpleSAML\XML\Utils\XPath
         return $xp;
     }
 }
-

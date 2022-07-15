@@ -10,7 +10,6 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 
-
 /**
  * Class for CAS serviceResponse
  *
@@ -60,8 +59,10 @@ class ServiceResponse extends AbstractCasElement
      * @param \DOMElement $xml The XML element we should load
      * @return \SimpleSAML\CAS\XML\cas\ServiceResponse
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingAttributeException if the supplied element is missing one of the mandatory attributes
+     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     *   if the qualified name of the supplied element is wrong
+     * @throws \SimpleSAML\XML\Exception\MissingAttributeException
+     *   if the supplied element is missing one of the mandatory attributes
      */
     public static function fromXML(DOMElement $xml): object
     {
@@ -76,13 +77,15 @@ class ServiceResponse extends AbstractCasElement
         $response = array_merge($authenticationSuccess, $authenticationFailure, $proxySuccess, $proxyFailure);
         Assert::notEmpty(
             $response,
-            'The <cas:serviceResponse> must contain exactly one of <cas:authenticationSuccess>, <cas:authenticationFailure>, <cas:proxySuccess> or <cas:proxyFailure>.',
+            'The <cas:serviceResponse> must contain exactly one of <cas:authenticationSuccess>,'
+            . ' <cas:authenticationFailure>, <cas:proxySuccess> or <cas:proxyFailure>.',
             MissingElementException::class
         );
         Assert::count(
             $response,
             1,
-            'The <cas:serviceResponse> must contain exactly one of <cas:authenticationSuccess>, <cas:authenticationFailure>, <cas:proxySuccess> or <cas:proxyFailure>.',
+            'The <cas:serviceResponse> must contain exactly one of <cas:authenticationSuccess>,'
+            . ' <cas:authenticationFailure>, <cas:proxySuccess> or <cas:proxyFailure>.',
             TooManyElementsException::class
         );
 
