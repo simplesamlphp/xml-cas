@@ -29,7 +29,7 @@ final class IsFromNewLoginTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->testedClass = IsFromNewLoginTicket::class;
+        $this->testedClass = IsFromNewLogin::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_isFromNewLogin.xml'
