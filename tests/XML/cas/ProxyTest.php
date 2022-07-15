@@ -43,9 +43,6 @@ final class ProxyTest extends TestCase
     {
         $proxy = new Proxy('https://example.org/proxy');
 
-        $proxyElement = $proxy->toXML();
-        $this->assertEquals('https://example.org/proxy', $proxyElement->textContent);
-
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
             strval($proxy)

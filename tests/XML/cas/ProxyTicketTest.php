@@ -43,9 +43,6 @@ final class ProxyTicketTest extends TestCase
     {
         $proxyTicket = new ProxyTicket('PT-1856392-b98xZrQN4p90ASrw96c8');
 
-        $proxyTicketElement = $proxyTicket->toXML();
-        $this->assertEquals('PT-1856392-b98xZrQN4p90ASrw96c8', $proxyTicketElement->textContent);
-
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
             strval($proxyTicket)
