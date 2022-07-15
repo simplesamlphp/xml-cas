@@ -152,7 +152,6 @@ final class AuthenticationSuccessTest extends TestCase
         $this->assertEquals('true', $attributes->getLongTermAuthenticationRequestTokenUsed()->getContent());
         $this->assertCount(3, $attributes->getElements());
 
-
         $firstNameElement = $attributes->getElements()[0]->getXML();
         $lastNameElement = $attributes->getElements()[1]->getXML();
         $emailElement = $attributes->getElements()[2]->getXML();
@@ -163,5 +162,12 @@ final class AuthenticationSuccessTest extends TestCase
         $this->assertEquals('Doe', $lastNameElement->textContent);
         $this->assertEquals('email', $emailElement->localName);
         $this->assertEquals('jdoe@example.org', $emailElement->textContent);
+
+        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()->getContent());
+
+        $proxies = $authenticationSuccess->getProxies();
+        $this->assertCount(2, $proxies->getProxy());
+        $this->assertEquals('https://proxy2/pgtUrl', $proxies->getProxy()[0]->getContent());
+        $this->assertEquals('https://proxy1/pgtUrl', $proxies->getProxy()[1]->getContent());
     }
 }
