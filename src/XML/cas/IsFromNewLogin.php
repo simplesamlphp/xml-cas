@@ -42,7 +42,12 @@ class IsFromNewLogin extends AbstractCasElement
     protected function validateContent(string $content): void
     {
         Assert::notWhitespaceOnly($content);
-        Assert::oneOf($content, ['true', 'false'], ProtocolViolationException::class);
+        Assert::oneOf(
+            $content,
+            ['true', 'false', '0', '1'],
+            'The value of ' . static::getNamespacePrefix() . ':' . self::getLocalName() . ' must be boolean.',
+            ProtocolViolationException::class
+        );
     }
 
 
