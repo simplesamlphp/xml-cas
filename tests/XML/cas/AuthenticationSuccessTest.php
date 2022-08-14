@@ -26,6 +26,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\cas\AuthenticationSuccessTest
  *
+ * @covers \SimpleSAML\CAS\Utils\XPath
  * @covers \SimpleSAML\CAS\XML\cas\AuthenticationSuccess
  * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
  *

@@ -21,6 +21,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\cas\AttributesTest
  *
+ * @covers \SimpleSAML\CAS\Utils\XPath
  * @covers \SimpleSAML\CAS\XML\cas\Attributes
  * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
  *
