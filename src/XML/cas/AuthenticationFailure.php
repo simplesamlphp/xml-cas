@@ -8,7 +8,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingAttributeException;
-use SimpleSAML\XML\XMLStringElementTrait;
+use SimpleSAML\XML\StringElementTrait;
 
 /**
  * Class for CAS authenticationFailure
@@ -17,7 +17,7 @@ use SimpleSAML\XML\XMLStringElementTrait;
  */
 class AuthenticationFailure extends AbstractCasElement implements ResponseInterface
 {
-    use XMLStringElementTrait;
+    use StringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'authenticationFailure';
@@ -35,7 +35,7 @@ class AuthenticationFailure extends AbstractCasElement implements ResponseInterf
      * @param string $content
      * @param string $code
      */
-    public function __construct(string $content, string $code)
+    final public function __construct(string $content, string $code)
     {
         $this->setContent($content);
         $this->setCode($code);
@@ -82,14 +82,14 @@ class AuthenticationFailure extends AbstractCasElement implements ResponseInterf
      * Initialize an AuthenticationFailure element.
      *
      * @param \DOMElement $xml The XML element we should load.
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing any of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'authenticationFailure', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ProxyFailure::NS, InvalidDOMElementException::class);
@@ -99,7 +99,7 @@ class AuthenticationFailure extends AbstractCasElement implements ResponseInterf
             MissingAttributeException::class,
         );
 
-        return new self(trim($xml->textContent), self::getAttribute($xml, 'code'));
+        return new static(trim($xml->textContent), self::getAttribute($xml, 'code'));
     }
 
 

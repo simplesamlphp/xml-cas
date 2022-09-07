@@ -7,7 +7,7 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\XMLStringElementTrait;
+use SimpleSAML\XML\StringElementTrait;
 
 /**
  * Class for CAS proxyTicket
@@ -16,7 +16,7 @@ use SimpleSAML\XML\XMLStringElementTrait;
  */
 class ProxyTicket extends AbstractCasElement
 {
-    use XMLStringElementTrait;
+    use StringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'proxyTicket';
@@ -25,7 +25,7 @@ class ProxyTicket extends AbstractCasElement
     /**
      * @param string $content
      */
-    public function __construct(string $content)
+    final public function __construct(string $content)
     {
         $this->setContent($content);
     }
@@ -48,16 +48,16 @@ class ProxyTicket extends AbstractCasElement
      * Convert XML into a cas:proxyTicket
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'proxyTicket', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ProxyTicket::NS, InvalidDOMElementException::class);
 
-        return new self($xml->textContent);
+        return new static($xml->textContent);
     }
 }

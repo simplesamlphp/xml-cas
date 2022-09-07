@@ -28,7 +28,7 @@ class Proxies extends AbstractCasElement
      *
      * @param \SimpleSAML\CAS\XML\cas\Proxy[] $proxy
      */
-    public function __construct(array $proxy = [])
+    final public function __construct(array $proxy = [])
     {
         $this->setProxy($proxy);
     }
@@ -59,14 +59,14 @@ class Proxies extends AbstractCasElement
      * Convert XML into a Proxies-element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return \SimpleSAML\CAS\XML\cas\Proxies
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *  if the qualified name of the supplied element is wrong
      * @throws \SimpleSAML\XML\Exception\MissingElementException if one of the mandatory child-elements is missing
      * @throws \SimpleSAML\XML\Exception\TooManyElementsException if too many child-elements of a type are specified
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'proxies', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Proxies::NS, InvalidDOMElementException::class);
@@ -74,7 +74,7 @@ class Proxies extends AbstractCasElement
         $proxy = Proxy::getChildrenOfClass($xml);
         Assert::minCount($proxy, 1, 'Missing at least one Proxy in Proxies.', MissingElementException::class);
 
-        return new self($proxy);
+        return new static($proxy);
     }
 
 

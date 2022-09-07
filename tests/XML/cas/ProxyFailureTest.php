@@ -8,7 +8,7 @@ use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\CAS\XML\cas\ProxyFailure;
-use SimpleSAML\Test\XML\SerializableXMLTestTrait;
+use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
@@ -24,7 +24,7 @@ use function strval;
  */
 final class ProxyFailureTest extends TestCase
 {
-    use SerializableXMLTestTrait;
+    use SerializableElementTestTrait;
 
     /**
      */

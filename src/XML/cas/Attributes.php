@@ -45,7 +45,7 @@ class Attributes extends AbstractCasElement
      * @param \SimpleSAML\CAS\XML\cas\IsFromNewLogin $isFromNewLogin
      * @param \SimpleSAML\XML\Chunk[] $elts
      */
-    public function __construct(
+    final public function __construct(
         AuthenticationDate $authenticationDate,
         LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
         IsFromNewLogin $isFromNewLogin,
@@ -117,14 +117,14 @@ class Attributes extends AbstractCasElement
      * Convert XML into a cas:attributes-element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return \SimpleSAML\CAS\XML\cas\Attributes
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'attributes', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Attributes::NS, InvalidDOMElementException::class);
@@ -169,7 +169,7 @@ class Attributes extends AbstractCasElement
             $elts[] = new Chunk($elt);
         }
 
-        return new self(
+        return new static(
             array_pop($authenticationDate),
             array_pop($longTermAuthenticationRequestTokenUsed),
             array_pop($isFromNewLogin),

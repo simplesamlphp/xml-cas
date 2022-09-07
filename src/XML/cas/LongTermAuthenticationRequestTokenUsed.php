@@ -8,7 +8,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\XMLStringElementTrait;
+use SimpleSAML\XML\StringElementTrait;
 
 /**
  * Class for CAS longTermAuthenticationRequestTokenUsed
@@ -17,7 +17,7 @@ use SimpleSAML\XML\XMLStringElementTrait;
  */
 class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
 {
-    use XMLStringElementTrait;
+    use StringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'longTermAuthenticationRequestTokenUsed';
@@ -26,7 +26,7 @@ class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
     /**
      * @param string $content
      */
-    public function __construct(string $content)
+    final public function __construct(string $content)
     {
         $this->setContent($content);
     }
@@ -55,16 +55,16 @@ class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
      * Convert XML into a cas:longTermAuthenticationRequestTokenUsed
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'longTermAuthenticationRequestTokenUsed', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, LongTermAuthenticationRequestTokenUsed::NS, InvalidDOMElementException::class);
 
-        return new self($xml->textContent);
+        return new static($xml->textContent);
     }
 }

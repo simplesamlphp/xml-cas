@@ -41,7 +41,7 @@ class AuthenticationSuccess extends AbstractCasElement implements ResponseInterf
      * @param \SimpleSAML\CAS\XML\cas\ProxyGrantingTicket|null $proxyGrantingTicket
      * @param \SimpleSAML\CAS\XML\cas\Proxies|null $proxies
      */
-    public function __construct(
+    final public function __construct(
         User $user,
         Attributes $attributes,
         ?ProxyGrantingTicket $proxyGrantingTicket = null,
@@ -130,14 +130,14 @@ class AuthenticationSuccess extends AbstractCasElement implements ResponseInterf
      * Convert XML into a cas:authenticationSuccess-element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return \SimpleSAML\CAS\XML\cas\AuthenticationSuccess
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'authenticationSuccess', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, AuthenticationSuccess::NS, InvalidDOMElementException::class);
@@ -161,7 +161,7 @@ class AuthenticationSuccess extends AbstractCasElement implements ResponseInterf
         $proxyGrantingTicket = ProxyGrantingTicket::getChildrenOfClass($xml);
         $proxies = Proxies::getChildrenOfClass($xml);
 
-        return new self(
+        return new static(
             array_pop($user),
             array_pop($attributes),
             empty($proxyGrantingTicket) ? null : array_pop($proxyGrantingTicket),

@@ -29,7 +29,7 @@ class ProxySuccess extends AbstractCasElement implements ResponseInterface
      *
      * @param \SimpleSAML\CAS\XML\cas\ProxyTicket $proxyTicket
      */
-    public function __construct(ProxyTicket $proxyTicket)
+    final public function __construct(ProxyTicket $proxyTicket)
     {
         $this->setProxyTicket($proxyTicket);
     }
@@ -57,14 +57,14 @@ class ProxySuccess extends AbstractCasElement implements ResponseInterface
      * Initialize an ProxySuccess element.
      *
      * @param \DOMElement $xml The XML element we should load.
-     * @return self
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing any of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'proxySuccess', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ProxySuccess::NS, InvalidDOMElementException::class);
@@ -77,7 +77,7 @@ class ProxySuccess extends AbstractCasElement implements ResponseInterface
             MissingElementException::class
         );
 
-        return new self(array_pop($proxyTicket));
+        return new static(array_pop($proxyTicket));
     }
 
 

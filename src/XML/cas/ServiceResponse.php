@@ -29,7 +29,7 @@ class ServiceResponse extends AbstractCasElement
      *
      * @param \SimpleSAML\CAS\XML\cas\ResponseInterface $response
      */
-    public function __construct(ResponseInterface $response)
+    final public function __construct(ResponseInterface $response)
     {
         $this->setResponse($response);
     }
@@ -57,14 +57,14 @@ class ServiceResponse extends AbstractCasElement
      * Convert XML into a cas:serviceResponse-element
      *
      * @param \DOMElement $xml The XML element we should load
-     * @return \SimpleSAML\CAS\XML\cas\ServiceResponse
+     * @return static
      *
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): object
+    public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, 'serviceResponse', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ServiceResponse::NS, InvalidDOMElementException::class);
@@ -89,7 +89,7 @@ class ServiceResponse extends AbstractCasElement
             TooManyElementsException::class
         );
 
-        return new self(array_pop($response));
+        return new static(array_pop($response));
     }
 
 

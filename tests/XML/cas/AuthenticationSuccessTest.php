@@ -16,7 +16,7 @@ use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\Proxies;
 use SimpleSAML\CAS\XML\cas\Proxy;
 use SimpleSAML\CAS\XML\cas\User;
-use SimpleSAML\Test\XML\SerializableXMLTestTrait;
+use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -34,7 +34,7 @@ use function strval;
  */
 final class AuthenticationSuccessTest extends TestCase
 {
-    use SerializableXMLTestTrait;
+    use SerializableElementTestTrait;
 
     /**
      */
