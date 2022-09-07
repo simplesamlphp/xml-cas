@@ -8,7 +8,7 @@ use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\Proxies;
 use SimpleSAML\CAS\XML\cas\Proxy;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Exception\MissingElementException;
 
@@ -25,7 +25,7 @@ use function strval;
  */
 final class ProxiesTest extends TestCase
 {
-    use SerializableElementTestTrait;
+    use SerializableXMLTestTrait;
 
     /**
      */

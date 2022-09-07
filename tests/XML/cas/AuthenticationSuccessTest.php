@@ -16,7 +16,7 @@ use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\Proxies;
 use SimpleSAML\CAS\XML\cas\Proxy;
 use SimpleSAML\CAS\XML\cas\User;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -35,7 +35,7 @@ use function strval;
  */
 final class AuthenticationSuccessTest extends TestCase
 {
-    use SerializableElementTestTrait;
+    use SerializableXMLTestTrait;
 
     /**
      */
@@ -165,11 +165,11 @@ final class AuthenticationSuccessTest extends TestCase
         $this->assertEquals('email', $emailElement->localName);
         $this->assertEquals('jdoe@example.org', $emailElement->textContent);
 
-        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()?->getContent());
+        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()->getContent());
 
         $proxies = $authenticationSuccess->getProxies();
         /** @psalm-var \SimpleSAML\CAS\XML\cas\Proxy[] $proxy */
-        $proxy = $proxies?->getProxy();
+        $proxy = $proxies->getProxy();
 
         $this->assertCount(2, $proxy);
         $this->assertEquals('https://proxy2/pgtUrl', $proxy[0]->getContent());

@@ -15,7 +15,7 @@ use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\ServiceResponse;
 use SimpleSAML\CAS\XML\cas\User;
 use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -33,7 +33,7 @@ use function strval;
 final class ServiceResponseTest extends TestCase
 {
     use SchemaValidationTestTrait;
-    use SerializableElementTestTrait;
+    use SerializableXMLTestTrait;
 
     /**
      */
@@ -95,6 +95,6 @@ final class ServiceResponseTest extends TestCase
         $this->assertEquals('myAttribute', $myAttributeElement->localName);
         $this->assertEquals('myValue', $myAttributeElement->textContent);
 
-        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()?->getContent());
+        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()->getContent());
     }
 }

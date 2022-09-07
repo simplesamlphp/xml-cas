@@ -7,7 +7,7 @@ namespace SimpleSAML\CAS\Test\XML\cas;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
@@ -23,7 +23,7 @@ use function strval;
  */
 final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
 {
-    use SerializableElementTestTrait;
+    use SerializableXMLTestTrait;
 
     /**
      */

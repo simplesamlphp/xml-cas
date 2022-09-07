@@ -45,7 +45,7 @@ class AuthenticationSuccess extends AbstractResponse
         User $user,
         Attributes $attributes,
         ?ProxyGrantingTicket $proxyGrantingTicket = null,
-        ?Proxies $proxies = null,
+        ?Proxies $proxies = null
     ) {
         $this->setUser($user);
         $this->setAttributes($attributes);
@@ -137,7 +137,7 @@ class AuthenticationSuccess extends AbstractResponse
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'authenticationSuccess', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, AuthenticationSuccess::NS, InvalidDOMElementException::class);

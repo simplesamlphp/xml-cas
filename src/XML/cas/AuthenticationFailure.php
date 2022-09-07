@@ -8,7 +8,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingAttributeException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\XMLStringElementTrait;
 
 /**
  * Class for CAS authenticationFailure
@@ -17,7 +17,7 @@ use SimpleSAML\XML\StringElementTrait;
  */
 class AuthenticationFailure extends AbstractResponse
 {
-    use StringElementTrait;
+    use XMLStringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'authenticationFailure';
@@ -89,7 +89,7 @@ class AuthenticationFailure extends AbstractResponse
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing any of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'authenticationFailure', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ProxyFailure::NS, InvalidDOMElementException::class);

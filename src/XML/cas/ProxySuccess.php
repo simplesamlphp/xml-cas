@@ -63,7 +63,7 @@ class ProxySuccess extends AbstractResponse
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing any of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'proxySuccess', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ProxySuccess::NS, InvalidDOMElementException::class);

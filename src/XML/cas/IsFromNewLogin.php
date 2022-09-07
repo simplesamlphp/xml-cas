@@ -8,7 +8,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\XMLStringElementTrait;
 
 /**
  * Class for CAS isFromNewLogin
@@ -17,7 +17,7 @@ use SimpleSAML\XML\StringElementTrait;
  */
 class IsFromNewLogin extends AbstractCasElement
 {
-    use StringElementTrait;
+    use XMLStringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'isFromNewLogin';
@@ -60,7 +60,7 @@ class IsFromNewLogin extends AbstractCasElement
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'isFromNewLogin', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, IsFromNewLogin::NS, InvalidDOMElementException::class);

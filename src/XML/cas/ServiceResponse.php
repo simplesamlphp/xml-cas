@@ -64,7 +64,7 @@ class ServiceResponse extends AbstractCasElement
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'serviceResponse', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ServiceResponse::NS, InvalidDOMElementException::class);

@@ -11,7 +11,7 @@ use SimpleSAML\CAS\XML\cas\Attributes;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
 use SimpleSAML\CAS\XML\cas\IsFromNewLogin;
 use SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -29,7 +29,7 @@ use function strval;
  */
 final class AttributesTest extends TestCase
 {
-    use SerializableElementTestTrait;
+    use SerializableXMLTestTrait;
 
     /**
      */

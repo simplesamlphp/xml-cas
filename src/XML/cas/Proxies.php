@@ -66,7 +66,7 @@ class Proxies extends AbstractCasElement
      * @throws \SimpleSAML\XML\Exception\MissingElementException if one of the mandatory child-elements is missing
      * @throws \SimpleSAML\XML\Exception\TooManyElementsException if too many child-elements of a type are specified
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'proxies', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Proxies::NS, InvalidDOMElementException::class);

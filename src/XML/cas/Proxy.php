@@ -7,7 +7,7 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\XMLStringElementTrait;
 
 /**
  * Class for CAS proxy
@@ -16,7 +16,7 @@ use SimpleSAML\XML\StringElementTrait;
  */
 class Proxy extends AbstractCasElement
 {
-    use StringElementTrait;
+    use XMLStringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'proxy';
@@ -53,7 +53,7 @@ class Proxy extends AbstractCasElement
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'proxy', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Proxy::NS, InvalidDOMElementException::class);

@@ -49,7 +49,7 @@ class Attributes extends AbstractCasElement
         AuthenticationDate $authenticationDate,
         LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
         IsFromNewLogin $isFromNewLogin,
-        array $elts = [],
+        array $elts = []
     ) {
         $this->setAuthenticationDate($authenticationDate);
         $this->setLongTermAuthenticationRequestTokenUsed($longTermAuthenticationRequestTokenUsed);
@@ -89,7 +89,7 @@ class Attributes extends AbstractCasElement
      * @param \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
      */
     private function setLongTermAuthenticationRequestTokenUsed(
-        LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
+        LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
     ): void {
         $this->longTermAuthenticationRequestTokenUsed = $longTermAuthenticationRequestTokenUsed;
     }
@@ -124,7 +124,7 @@ class Attributes extends AbstractCasElement
      * @throws \SimpleSAML\XML\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'attributes', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Attributes::NS, InvalidDOMElementException::class);

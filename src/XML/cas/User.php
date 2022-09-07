@@ -7,7 +7,7 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\XMLStringElementTrait;
 
 /**
  * Class for CAS user
@@ -16,7 +16,7 @@ use SimpleSAML\XML\StringElementTrait;
  */
 class User extends AbstractCasElement
 {
-    use StringElementTrait;
+    use XMLStringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'user';
@@ -53,7 +53,7 @@ class User extends AbstractCasElement
      * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(DOMElement $xml): self
     {
         Assert::same($xml->localName, 'user', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, User::NS, InvalidDOMElementException::class);
