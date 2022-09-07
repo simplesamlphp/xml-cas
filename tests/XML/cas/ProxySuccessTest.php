@@ -19,6 +19,7 @@ use function strval;
  * Class \SimpleSAML\CAS\XML\cas\ProxySuccessTest
  *
  * @covers \SimpleSAML\CAS\XML\cas\ProxySuccess
+ * @covers \SimpleSAML\CAS\XML\cas\AbstractResponse
  * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
  *
  * @package simplesamlphp/cas

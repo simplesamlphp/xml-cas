@@ -27,7 +27,6 @@ final class ProxiesTest extends TestCase
 {
     use SerializableElementTestTrait;
 
-
     /**
      */
     protected function setUp(): void

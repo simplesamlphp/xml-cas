@@ -18,6 +18,7 @@ use function strval;
  * Class \SimpleSAML\CAS\XML\cas\AuthenticationFailureTest
  *
  * @covers \SimpleSAML\CAS\XML\cas\AuthenticationFailure
+ * @covers \SimpleSAML\CAS\XML\cas\AbstractResponse
  * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
  *
  * @package simplesamlphp/cas

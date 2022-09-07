@@ -28,6 +28,7 @@ use function strval;
  *
  * @covers \SimpleSAML\CAS\Utils\XPath
  * @covers \SimpleSAML\CAS\XML\cas\AuthenticationSuccess
+ * @covers \SimpleSAML\CAS\XML\cas\AbstractResponse
  * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
  *
  * @package simplesamlphp/cas
