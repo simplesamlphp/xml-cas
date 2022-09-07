@@ -32,7 +32,7 @@ final class ProxyGrantingTicketTest extends TestCase
         $this->testedClass = ProxyGrantingTicket::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxyGrantingTicket.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxyGrantingTicket.xml',
         );
     }
 
@@ -45,7 +45,7 @@ final class ProxyGrantingTicketTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($proxyGrantingTicket)
+            strval($proxyGrantingTicket),
         );
     }
 

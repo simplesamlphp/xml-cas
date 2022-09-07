@@ -79,14 +79,14 @@ class ServiceResponse extends AbstractCasElement
             $response,
             'The <cas:serviceResponse> must contain exactly one of <cas:authenticationSuccess>,'
             . ' <cas:authenticationFailure>, <cas:proxySuccess> or <cas:proxyFailure>.',
-            MissingElementException::class
+            MissingElementException::class,
         );
         Assert::count(
             $response,
             1,
             'The <cas:serviceResponse> must contain exactly one of <cas:authenticationSuccess>,'
             . ' <cas:authenticationFailure>, <cas:proxySuccess> or <cas:proxyFailure>.',
-            TooManyElementsException::class
+            TooManyElementsException::class,
         );
 
         return new static(array_pop($response));

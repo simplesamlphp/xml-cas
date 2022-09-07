@@ -32,7 +32,7 @@ final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
         $this->testedClass = LongTermAuthenticationRequestTokenUsed::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_longTermAuthenticationRequestTokenUsed.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_longTermAuthenticationRequestTokenUsed.xml',
         );
     }
 
@@ -45,7 +45,7 @@ final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($longTerm)
+            strval($longTerm),
         );
     }
 

@@ -45,7 +45,7 @@ class AuthenticationSuccess extends AbstractResponse
         User $user,
         Attributes $attributes,
         ?ProxyGrantingTicket $proxyGrantingTicket = null,
-        ?Proxies $proxies = null
+        ?Proxies $proxies = null,
     ) {
         $this->setUser($user);
         $this->setAttributes($attributes);
@@ -147,7 +147,7 @@ class AuthenticationSuccess extends AbstractResponse
             $user,
             1,
             'Exactly one <cas:user> must be specified.',
-            MissingElementException::class
+            MissingElementException::class,
         );
 
         $attributes = Attributes::getChildrenOfClass($xml);
@@ -155,7 +155,7 @@ class AuthenticationSuccess extends AbstractResponse
             $attributes,
             1,
             'Exactly one <cas:attributes> must be specified.',
-            MissingElementException::class
+            MissingElementException::class,
         );
 
         $proxyGrantingTicket = ProxyGrantingTicket::getChildrenOfClass($xml);
@@ -164,8 +164,8 @@ class AuthenticationSuccess extends AbstractResponse
         return new static(
             array_pop($user),
             array_pop($attributes),
-            empty($proxyGrantingTicket) ? null : array_pop($proxyGrantingTicket),
-            empty($proxies) ? null : array_pop($proxies)
+            array_pop($proxyGrantingTicket),
+            array_pop($proxies),
         );
     }
 

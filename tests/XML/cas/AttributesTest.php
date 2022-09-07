@@ -38,7 +38,7 @@ final class AttributesTest extends TestCase
         $this->testedClass = Attributes::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_attributes.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_attributes.xml',
         );
     }
 
@@ -51,14 +51,14 @@ final class AttributesTest extends TestCase
         $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
         $isFromNewLogin = new IsFromNewLogin('true');
         $document = DOMDocumentFactory::fromString(
-            '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>'
+            '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         );
         $myAttribute = new Chunk($document->documentElement);
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]);
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($attributes)
+            strval($attributes),
         );
     }
 
@@ -69,7 +69,7 @@ final class AttributesTest extends TestCase
         $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
         $isFromNewLogin = new IsFromNewLogin('true');
         $document = DOMDocumentFactory::fromString(
-            '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>'
+            '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         );
         $myAttribute = new Chunk($document->documentElement);
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]);
@@ -86,7 +86,7 @@ final class AttributesTest extends TestCase
         $attributesElements = XPath::xpQuery(
             $attributesElement,
             './cas:authenticationDate/following-sibling::*',
-            $xpCache
+            $xpCache,
         );
 
         $this->assertGreaterThanOrEqual(2, count($attributesElements));

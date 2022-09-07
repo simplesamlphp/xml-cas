@@ -43,7 +43,7 @@ final class AuthenticationSuccessTest extends TestCase
         $this->testedClass = AuthenticationSuccess::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_authenticationSuccess.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_authenticationSuccess.xml',
         );
     }
 
@@ -53,17 +53,17 @@ final class AuthenticationSuccessTest extends TestCase
     public function testMarshalling(): void
     {
         $firstNameDocument = DOMDocumentFactory::fromString(
-            '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>'
+            '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>',
         );
         $firstName = new Chunk($firstNameDocument->documentElement);
 
         $lastNameDocument = DOMDocumentFactory::fromString(
-            '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>'
+            '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>',
         );
         $lastName = new Chunk($lastNameDocument->documentElement);
 
         $emailDocument = DOMDocumentFactory::fromString(
-            '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>'
+            '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>',
         );
         $email = new Chunk($emailDocument->documentElement);
 
@@ -76,14 +76,14 @@ final class AuthenticationSuccessTest extends TestCase
         $proxyGrantingTicket = new ProxyGrantingTicket('PGTIOU-84678-8a9d...');
         $proxies = new Proxies([
             new Proxy('https://proxy2/pgtUrl'),
-            new Proxy('https://proxy1/pgtUrl')
+            new Proxy('https://proxy1/pgtUrl'),
         ]);
 
         $authenticationSuccess = new AuthenticationSuccess($user, $attributes, $proxyGrantingTicket, $proxies);
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($authenticationSuccess)
+            strval($authenticationSuccess),
         );
     }
 
@@ -91,17 +91,17 @@ final class AuthenticationSuccessTest extends TestCase
     public function testMarshallingElementOrdering(): void
     {
         $firstNameDocument = DOMDocumentFactory::fromString(
-            '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>'
+            '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>',
         );
         $firstName = new Chunk($firstNameDocument->documentElement);
 
         $lastNameDocument = DOMDocumentFactory::fromString(
-            '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>'
+            '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>',
         );
         $lastName = new Chunk($lastNameDocument->documentElement);
 
         $emailDocument = DOMDocumentFactory::fromString(
-            '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>'
+            '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>',
         );
         $email = new Chunk($emailDocument->documentElement);
 
@@ -114,7 +114,7 @@ final class AuthenticationSuccessTest extends TestCase
         $proxyGrantingTicket = new ProxyGrantingTicket('PGTIOU-84678-8a9d...');
         $proxies = new Proxies([
             new Proxy('https://proxy2/pgtUrl'),
-            new Proxy('https://proxy1/pgtUrl')
+            new Proxy('https://proxy1/pgtUrl'),
         ]);
 
         $authenticationSuccess = new AuthenticationSuccess($user, $attributes, $proxyGrantingTicket, $proxies);
@@ -130,7 +130,7 @@ final class AuthenticationSuccessTest extends TestCase
         $authenticationSuccessElements = XPath::xpQuery(
             $authenticationSuccessElement,
             './cas:user/following-sibling::*',
-            $xpCache
+            $xpCache,
         );
 
         $this->assertCount(3, $authenticationSuccessElements);
@@ -164,11 +164,14 @@ final class AuthenticationSuccessTest extends TestCase
         $this->assertEquals('email', $emailElement->localName);
         $this->assertEquals('jdoe@example.org', $emailElement->textContent);
 
-        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()->getContent());
+        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()?->getContent());
 
         $proxies = $authenticationSuccess->getProxies();
-        $this->assertCount(2, $proxies->getProxy());
-        $this->assertEquals('https://proxy2/pgtUrl', $proxies->getProxy()[0]->getContent());
-        $this->assertEquals('https://proxy1/pgtUrl', $proxies->getProxy()[1]->getContent());
+        /** @psalm-var \SimpleSAML\CAS\XML\cas\Proxy[] $proxy */
+        $proxy = $proxies?->getProxy();
+
+        $this->assertCount(2, $proxy);
+        $this->assertEquals('https://proxy2/pgtUrl', $proxy[0]->getContent());
+        $this->assertEquals('https://proxy1/pgtUrl', $proxy[1]->getContent());
     }
 }

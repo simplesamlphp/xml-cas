@@ -33,7 +33,7 @@ final class AuthenticationFailureTest extends TestCase
         $this->testedClass = AuthenticationFailure::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_authenticationFailure.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_authenticationFailure.xml',
         );
     }
 
@@ -44,12 +44,12 @@ final class AuthenticationFailureTest extends TestCase
     {
         $authenticationFailure = new AuthenticationFailure(
             'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
-            C::ERR_INVALID_TICKET
+            C::ERR_INVALID_TICKET,
         );
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($authenticationFailure)
+            strval($authenticationFailure),
         );
     }
 
@@ -62,7 +62,7 @@ final class AuthenticationFailureTest extends TestCase
 
         $this->assertEquals(
             'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
-            $authenticationFailure->getContent()
+            $authenticationFailure->getContent(),
         );
         $this->assertEquals(C::ERR_INVALID_TICKET, $authenticationFailure->getCode());
     }

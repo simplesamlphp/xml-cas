@@ -32,7 +32,7 @@ final class ProxyTicketTest extends TestCase
         $this->testedClass = ProxyTicket::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxyTicket.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxyTicket.xml',
         );
     }
 
@@ -45,7 +45,7 @@ final class ProxyTicketTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($proxyTicket)
+            strval($proxyTicket),
         );
     }
 

@@ -16,7 +16,6 @@ class Constants extends \SimpleSAML\XML\Constants
      */
     public const NS_CAS = 'http://www.yale.edu/tp/cas';
 
-
     /**
      * The error codes defined by the CAS protocol specification
      */

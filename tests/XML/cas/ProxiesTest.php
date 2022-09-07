@@ -35,7 +35,7 @@ final class ProxiesTest extends TestCase
         $this->testedClass = Proxies::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxies.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxies.xml',
         );
     }
 
@@ -50,7 +50,7 @@ final class ProxiesTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($list)
+            strval($list),
         );
     }
 

@@ -49,7 +49,7 @@ class Attributes extends AbstractCasElement
         AuthenticationDate $authenticationDate,
         LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
         IsFromNewLogin $isFromNewLogin,
-        array $elts = []
+        array $elts = [],
     ) {
         $this->setAuthenticationDate($authenticationDate);
         $this->setLongTermAuthenticationRequestTokenUsed($longTermAuthenticationRequestTokenUsed);
@@ -89,7 +89,7 @@ class Attributes extends AbstractCasElement
      * @param \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
      */
     private function setLongTermAuthenticationRequestTokenUsed(
-        LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
+        LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
     ): void {
         $this->longTermAuthenticationRequestTokenUsed = $longTermAuthenticationRequestTokenUsed;
     }
@@ -134,7 +134,7 @@ class Attributes extends AbstractCasElement
             $authenticationDate,
             1,
             'Exactly one <cas:authenticationDate> must be specified.',
-            MissingElementException::class
+            MissingElementException::class,
         );
 
         $longTermAuthenticationRequestTokenUsed = LongTermAuthenticationRequestTokenUsed::getChildrenOfClass($xml);
@@ -142,7 +142,7 @@ class Attributes extends AbstractCasElement
             $longTermAuthenticationRequestTokenUsed,
             1,
             'Exactly one <cas:longTermAuthenticationRequestTokenUsed> must be specified.',
-            MissingElementException::class
+            MissingElementException::class,
         );
 
         $isFromNewLogin = IsFromNewLogin::getChildrenOfClass($xml);
@@ -150,7 +150,7 @@ class Attributes extends AbstractCasElement
             $isFromNewLogin,
             1,
             'Exactly least one <cas:isFromNewLogin> must be specified.',
-            MissingElementException::class
+            MissingElementException::class,
         );
 
         $elts = [];
@@ -173,7 +173,7 @@ class Attributes extends AbstractCasElement
             array_pop($authenticationDate),
             array_pop($longTermAuthenticationRequestTokenUsed),
             array_pop($isFromNewLogin),
-            $elts
+            $elts,
         );
     }
 

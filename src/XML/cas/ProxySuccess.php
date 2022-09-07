@@ -74,7 +74,7 @@ class ProxySuccess extends AbstractResponse
             $proxyTicket,
             1,
             'Exactly one <cas:proxyTicket> must be specified.',
-            MissingElementException::class
+            MissingElementException::class,
         );
 
         return new static(array_pop($proxyTicket));

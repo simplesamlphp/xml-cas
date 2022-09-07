@@ -33,7 +33,7 @@ final class ProxyFailureTest extends TestCase
         $this->testedClass = ProxyFailure::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxyFailure.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxyFailure.xml',
         );
     }
 
@@ -46,7 +46,7 @@ final class ProxyFailureTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($proxyFailure)
+            strval($proxyFailure),
         );
     }
 

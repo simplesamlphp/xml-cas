@@ -32,7 +32,7 @@ final class UserTest extends TestCase
         $this->testedClass = User::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_user.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_user.xml',
         );
     }
 
@@ -45,7 +45,7 @@ final class UserTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($user)
+            strval($user),
         );
     }
 

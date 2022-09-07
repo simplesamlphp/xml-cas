@@ -32,7 +32,7 @@ final class ProxyTest extends TestCase
         $this->testedClass = Proxy::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxy.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxy.xml',
         );
     }
 
@@ -45,7 +45,7 @@ final class ProxyTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($proxy)
+            strval($proxy),
         );
     }
 

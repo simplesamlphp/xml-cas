@@ -34,7 +34,7 @@ final class ProxySuccessTest extends TestCase
         $this->testedClass = ProxySuccess::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxySuccess.xml'
+            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxySuccess.xml',
         );
     }
 
@@ -47,7 +47,7 @@ final class ProxySuccessTest extends TestCase
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($proxySuccess)
+            strval($proxySuccess),
         );
     }
 

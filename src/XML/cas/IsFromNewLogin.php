@@ -46,7 +46,7 @@ class IsFromNewLogin extends AbstractCasElement
             $content,
             ['true', 'false', '0', '1'],
             'The value of ' . static::getNamespacePrefix() . ':' . self::getLocalName() . ' must be boolean.',
-            ProtocolViolationException::class
+            ProtocolViolationException::class,
         );
     }
 
