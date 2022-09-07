@@ -15,7 +15,7 @@ use SimpleSAML\XML\XMLStringElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class ProxySuccess extends AbstractCasElement implements ResponseInterface
+class ProxySuccess extends AbstractResponse
 {
     /** @var string */
     public const LOCALNAME = 'proxySuccess';

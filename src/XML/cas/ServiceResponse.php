@@ -20,34 +20,34 @@ class ServiceResponse extends AbstractCasElement
     /** @var string */
     public const LOCALNAME = 'serviceResponse';
 
-    /** @var \SimpleSAML\CAS\XML\cas\ResponseInterface */
-    protected ResponseInterface $response;
+    /** @var \SimpleSAML\CAS\XML\cas\AbstractResponse */
+    protected AbstractResponse $response;
 
 
     /**
      * Initialize a cas:serviceResponse element
      *
-     * @param \SimpleSAML\CAS\XML\cas\ResponseInterface $response
+     * @param \SimpleSAML\CAS\XML\cas\AbstractResponse $response
      */
-    final public function __construct(ResponseInterface $response)
+    final public function __construct(AbstractResponse $response)
     {
         $this->setResponse($response);
     }
 
 
     /**
-     * @return \SimpleSAML\CAS\XML\cas\ResponseInterface
+     * @return \SimpleSAML\CAS\XML\cas\AbstractResponse
      */
-    public function getResponse(): ResponseInterface
+    public function getResponse(): AbstractResponse
     {
         return $this->response;
     }
 
 
     /**
-     * @param \SimpleSAML\CAS\XML\cas\ResponseInterface $response
+     * @param \SimpleSAML\CAS\XML\cas\AbstractResponse $response
      */
-    private function setResponse(ResponseInterface $response): void
+    private function setResponse(AbstractResponse $response): void
     {
         $this->response = $response;
     }
