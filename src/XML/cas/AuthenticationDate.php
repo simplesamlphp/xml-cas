@@ -41,7 +41,6 @@ class AuthenticationDate extends AbstractCasElement
      */
     protected function validateContent(string $content): void
     {
-        Assert::notWhitespaceOnly($content);
         Assert::validDateTimeZulu($content, ProtocolViolationException::class);
     }
 
