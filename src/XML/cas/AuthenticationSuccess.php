@@ -182,14 +182,8 @@ class AuthenticationSuccess extends AbstractResponse
 
         $this->user->toXML($e);
         $this->attributes->toXML($e);
-
-        if ($this->proxyGrantingTicket !== null) {
-            $this->proxyGrantingTicket->toXML($e);
-        }
-
-        if ($this->proxies !== null) {
-            $this->proxies->toXML($e);
-        }
+        $this->proxyGrantingTicket?->toXML($e);
+        $this->proxies?->toXML($e);
 
         return $e;
     }

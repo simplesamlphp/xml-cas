@@ -56,6 +56,9 @@ final class UserTest extends TestCase
     {
         $user = User::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('username', $user->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($user),
+        );
     }
 }

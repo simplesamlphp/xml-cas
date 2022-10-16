@@ -58,7 +58,9 @@ final class ProxyFailureTest extends TestCase
     {
         $proxyFailure = ProxyFailure::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('some text', $proxyFailure->getContent());
-        $this->assertEquals(C::ERR_INVALID_REQUEST, $proxyFailure->getCode());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($proxyFailure),
+        );
     }
 }

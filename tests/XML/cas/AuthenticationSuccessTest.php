@@ -147,32 +147,9 @@ final class AuthenticationSuccessTest extends TestCase
     {
         $authenticationSuccess = AuthenticationSuccess::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('username', $authenticationSuccess->getUser()->getContent());
-
-        $attributes = $authenticationSuccess->getAttributes();
-        $this->assertEquals('true', $attributes->getIsFromNewLogin()->getContent());
-        $this->assertEquals('true', $attributes->getLongTermAuthenticationRequestTokenUsed()->getContent());
-        $this->assertCount(3, $attributes->getElements());
-
-        $firstNameElement = $attributes->getElements()[0]->getXML();
-        $lastNameElement = $attributes->getElements()[1]->getXML();
-        $emailElement = $attributes->getElements()[2]->getXML();
-
-        $this->assertEquals('firstname', $firstNameElement->localName);
-        $this->assertEquals('John', $firstNameElement->textContent);
-        $this->assertEquals('lastname', $lastNameElement->localName);
-        $this->assertEquals('Doe', $lastNameElement->textContent);
-        $this->assertEquals('email', $emailElement->localName);
-        $this->assertEquals('jdoe@example.org', $emailElement->textContent);
-
-        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()?->getContent());
-
-        $proxies = $authenticationSuccess->getProxies();
-        /** @psalm-var \SimpleSAML\CAS\XML\cas\Proxy[] $proxy */
-        $proxy = $proxies?->getProxy();
-
-        $this->assertCount(2, $proxy);
-        $this->assertEquals('https://proxy2/pgtUrl', $proxy[0]->getContent());
-        $this->assertEquals('https://proxy1/pgtUrl', $proxy[1]->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($authenticationSuccess),
+        );
     }
 }

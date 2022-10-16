@@ -101,13 +101,9 @@ final class AttributesTest extends TestCase
     {
         $attributes = Attributes::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('2015-11-12T09:30:10Z', $attributes->getAuthenticationDate()->getContent());
-        $this->assertEquals('true', $attributes->getIsFromNewLogin()->getContent());
-        $this->assertEquals('true', $attributes->getLongTermAuthenticationRequestTokenUsed()->getContent());
-
-        $myAttributeElement = $attributes->getElements()[0]->getXML();
-
-        $this->assertEquals('myAttribute', $myAttributeElement->localName);
-        $this->assertEquals('myValue', $myAttributeElement->textContent);
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($attributes),
+        );
     }
 }

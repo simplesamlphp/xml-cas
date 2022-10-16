@@ -62,9 +62,8 @@ final class AuthenticationFailureTest extends TestCase
         $authenticationFailure = AuthenticationFailure::fromXML($this->xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
-            $authenticationFailure->getContent(),
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($authenticationFailure),
         );
-        $this->assertEquals(C::ERR_INVALID_TICKET, $authenticationFailure->getCode());
     }
 }

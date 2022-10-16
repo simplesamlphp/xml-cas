@@ -56,6 +56,9 @@ final class IsFromNewLoginTest extends TestCase
     {
         $isFromNewLogin = IsFromNewLogin::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('true', $isFromNewLogin->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($isFromNewLogin),
+        );
     }
 }

@@ -80,21 +80,10 @@ final class ServiceResponseTest extends TestCase
     public function testUnmarshalling(): void
     {
         $serviceResponse = ServiceResponse::fromXML($this->xmlRepresentation->documentElement);
-        $authenticationSuccess = $serviceResponse->getResponse();
-        $this->assertInstanceOf(AuthenticationSuccess::class, $authenticationSuccess);
 
-        $this->assertEquals('username', $authenticationSuccess->getUser()->getContent());
-
-        $attributes = $authenticationSuccess->getAttributes();
-        $this->assertEquals('2015-11-12T09:30:10Z', $attributes->getAuthenticationDate()->getContent());
-        $this->assertEquals('true', $attributes->getIsFromNewLogin()->getContent());
-        $this->assertEquals('true', $attributes->getLongTermAuthenticationRequestTokenUsed()->getContent());
-
-        $myAttributeElement = $attributes->getElements()[0]->getXML();
-
-        $this->assertEquals('myAttribute', $myAttributeElement->localName);
-        $this->assertEquals('myValue', $myAttributeElement->textContent);
-
-        $this->assertEquals('PGTIOU-84678-8a9d...', $authenticationSuccess->getProxyGrantingTicket()?->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($serviceResponse),
+        );
     }
 }

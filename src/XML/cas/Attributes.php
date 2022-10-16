@@ -192,8 +192,11 @@ class Attributes extends AbstractCasElement
         $this->longTermAuthenticationRequestTokenUsed->toXML($e);
         $this->isFromNewLogin->toXML($e);
 
+        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
         foreach ($this->elements as $elt) {
-            $e->appendChild($e->ownerDocument->importNode($elt->getXML(), true));
+            if (!$elt->isEmptyElement()) {
+                $elt->toXML($e);
+            }
         }
 
         return $e;

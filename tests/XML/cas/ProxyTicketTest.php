@@ -56,6 +56,9 @@ final class ProxyTicketTest extends TestCase
     {
         $proxyTicket = ProxyTicket::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('PT-1856392-b98xZrQN4p90ASrw96c8', $proxyTicket->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($proxyTicket),
+        );
     }
 }

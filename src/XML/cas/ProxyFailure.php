@@ -114,8 +114,8 @@ class ProxyFailure extends AbstractResponse
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->content;
-        $e->setAttribute('code', $this->code);
+        $e->textContent = $this->getContent();
+        $e->setAttribute('code', $this->getCode());
 
         return $e;
     }

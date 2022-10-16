@@ -60,10 +60,9 @@ final class ProxiesTest extends TestCase
     {
         $list = Proxies::fromXML($this->xmlRepresentation->documentElement);
 
-        $entries = $list->getProxy();
-        $this->assertCount(2, $entries);
-
-        $this->assertEquals('https://example.org/proxy/1', $entries[0]->getContent());
-        $this->assertEquals('https://example.org/proxy/2', $entries[1]->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($list),
+        );
     }
 }

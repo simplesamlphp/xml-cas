@@ -56,6 +56,9 @@ final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
     {
         $longTerm = LongTermAuthenticationRequestTokenUsed::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('true', $longTerm->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($longTerm),
+        );
     }
 }

@@ -56,6 +56,9 @@ final class ProxyTest extends TestCase
     {
         $proxy = Proxy::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('https://example.org/proxy', $proxy->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($proxy),
+        );
     }
 }

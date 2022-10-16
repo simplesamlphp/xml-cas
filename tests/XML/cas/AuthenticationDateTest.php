@@ -56,6 +56,9 @@ final class AuthenticationDateTest extends TestCase
     {
         $authenticationDate = AuthenticationDate::fromXML($this->xmlRepresentation->documentElement);
 
-        $this->assertEquals('2015-11-12T09:30:10Z', $authenticationDate->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($authenticationDate),
+        );
     }
 }

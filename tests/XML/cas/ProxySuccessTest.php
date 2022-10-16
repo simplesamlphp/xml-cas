@@ -59,7 +59,9 @@ final class ProxySuccessTest extends TestCase
     {
         $proxySuccess = ProxySuccess::fromXML($this->xmlRepresentation->documentElement);
 
-        $ticket = $proxySuccess->getProxyTicket();
-        $this->assertEquals('PT-1856392-b98xZrQN4p90ASrw96c8', $ticket->getContent());
+        $this->assertEquals(
+            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            strval($proxySuccess),
+        );
     }
 }
