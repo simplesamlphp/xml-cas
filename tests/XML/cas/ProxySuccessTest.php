@@ -35,7 +35,7 @@ final class ProxySuccessTest extends TestCase
         $this->testedClass = ProxySuccess::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_proxySuccess.xml',
+            dirname(__FILE__, 3) . '/resources/xml/cas_proxySuccess.xml',
         );
     }
 

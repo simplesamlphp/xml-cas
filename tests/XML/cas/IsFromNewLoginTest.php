@@ -32,7 +32,7 @@ final class IsFromNewLoginTest extends TestCase
         $this->testedClass = IsFromNewLogin::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_isFromNewLogin.xml',
+            dirname(__FILE__, 3) . '/resources/xml/cas_isFromNewLogin.xml',
         );
     }
 

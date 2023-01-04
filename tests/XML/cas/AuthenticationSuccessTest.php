@@ -44,7 +44,7 @@ final class AuthenticationSuccessTest extends TestCase
         $this->testedClass = AuthenticationSuccess::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_authenticationSuccess.xml',
+            dirname(__FILE__, 3) . '/resources/xml/cas_authenticationSuccess.xml',
         );
     }
 

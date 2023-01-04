@@ -32,7 +32,7 @@ final class AuthenticationDateTest extends TestCase
         $this->testedClass = AuthenticationDate::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_authenticationDate.xml',
+            dirname(__FILE__, 3) . '/resources/xml/cas_authenticationDate.xml',
         );
     }
 

@@ -38,7 +38,7 @@ final class AttributesTest extends TestCase
         $this->testedClass = Attributes::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_attributes.xml',
+            dirname(__FILE__, 3) . '/resources/xml/cas_attributes.xml',
         );
     }
 

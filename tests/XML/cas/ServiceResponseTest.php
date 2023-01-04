@@ -39,12 +39,12 @@ final class ServiceResponseTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->schema = dirname(dirname(dirname(dirname(__FILE__)))) . '/schemas/cas-server-protocol-3.0.xsd';
+        $this->schema = dirname(__FILE__, 4) . '/schemas/cas-server-protocol-3.0.xsd';
 
         $this->testedClass = ServiceResponse::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(__FILE__))) . '/resources/xml/cas_serviceResponse.xml',
+            dirname(__FILE__, 3) . '/resources/xml/cas_serviceResponse.xml',
         );
     }
 
