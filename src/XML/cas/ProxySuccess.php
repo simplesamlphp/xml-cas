@@ -90,7 +90,7 @@ class ProxySuccess extends AbstractResponse
     {
         $e = $this->instantiateParentElement($parent);
 
-        $this->proxyTicket->toXML($e);
+        $this->getProxyTicket()->toXML($e);
 
         return $e;
     }

@@ -188,9 +188,9 @@ class Attributes extends AbstractCasElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $this->authenticationDate->toXML($e);
-        $this->longTermAuthenticationRequestTokenUsed->toXML($e);
-        $this->isFromNewLogin->toXML($e);
+        $this->getAuthenticationDate()->toXML($e);
+        $this->getLongTermAuthenticationRequestTokenUsed()->toXML($e);
+        $this->getIsFromNewLogin()->toXML($e);
 
         /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
         foreach ($this->elements as $elt) {

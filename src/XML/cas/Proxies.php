@@ -88,7 +88,7 @@ class Proxies extends AbstractCasElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        foreach ($this->proxy as $proxy) {
+        foreach ($this->getProxy() as $proxy) {
             $proxy->toXML($e);
         }
 

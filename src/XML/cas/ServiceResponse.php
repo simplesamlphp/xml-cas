@@ -103,7 +103,7 @@ class ServiceResponse extends AbstractCasElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $this->response->toXML($e);
+        $this->getResponse()->toXML($e);
 
         return $e;
     }
