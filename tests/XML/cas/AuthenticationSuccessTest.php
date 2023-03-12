@@ -16,9 +16,9 @@ use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\Proxies;
 use SimpleSAML\CAS\XML\cas\Proxy;
 use SimpleSAML\CAS\XML\cas\User;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -44,7 +44,7 @@ final class AuthenticationSuccessTest extends TestCase
         $this->testedClass = AuthenticationSuccess::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 3) . '/resources/xml/cas_authenticationSuccess.xml',
+            dirname(__FILE__, 4) . '/resources/xml/cas_authenticationSuccess.xml',
         );
     }
 

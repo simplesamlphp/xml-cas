@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\CAS\XML\cas\ProxySuccess;
 use SimpleSAML\CAS\XML\cas\ProxyTicket;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
@@ -35,7 +35,7 @@ final class ProxySuccessTest extends TestCase
         $this->testedClass = ProxySuccess::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 3) . '/resources/xml/cas_proxySuccess.xml',
+            dirname(__FILE__, 4) . '/resources/xml/cas_proxySuccess.xml',
         );
     }
 

@@ -14,8 +14,8 @@ use SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed;
 use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\ServiceResponse;
 use SimpleSAML\CAS\XML\cas\User;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -39,12 +39,12 @@ final class ServiceResponseTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->schema = dirname(__FILE__, 4) . '/schemas/cas-server-protocol-3.0.xsd';
+        $this->schema = dirname(__FILE__, 4) . '/resources/schemas/cas-server-protocol-3.0.xsd';
 
         $this->testedClass = ServiceResponse::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 3) . '/resources/xml/cas_serviceResponse.xml',
+            dirname(__FILE__, 4) . '/resources/xml/cas_serviceResponse.xml',
         );
     }
 
