@@ -8,7 +8,6 @@
 >
   <projectFiles>
     <directory name="src/XML" />
-    <directory name="tests" />
     <ignoreFiles>
       <directory name="vendor" />
     </ignoreFiles>
@@ -37,15 +36,5 @@
         <directory name="tests" />
       </errorLevel>
     </PropertyNotSetInConstructor>
-
-    <InternalMethod>
-      <errorLevel type="suppress">
-        <directory name="tests" />
-      </errorLevel>
-    </InternalMethod>
   </issueHandlers>
-
-  <stubs>
-    <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/soap.php" />
-  </stubs>
 </psalm>
