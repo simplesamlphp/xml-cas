@@ -15,13 +15,10 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
  *
  * @package simplesamlphp/cas
  */
-class ServiceResponse extends AbstractCasElement
+final class ServiceResponse extends AbstractCasElement
 {
     /** @var string */
     public const LOCALNAME = 'serviceResponse';
-
-    /** @var \SimpleSAML\CAS\XML\cas\AbstractResponse */
-    protected AbstractResponse $response;
 
 
     /**
@@ -29,9 +26,9 @@ class ServiceResponse extends AbstractCasElement
      *
      * @param \SimpleSAML\CAS\XML\cas\AbstractResponse $response
      */
-    final public function __construct(AbstractResponse $response)
-    {
-        $this->setResponse($response);
+    final public function __construct(
+        protected AbstractResponse $response,
+    ) {
     }
 
 
@@ -41,15 +38,6 @@ class ServiceResponse extends AbstractCasElement
     public function getResponse(): AbstractResponse
     {
         return $this->response;
-    }
-
-
-    /**
-     * @param \SimpleSAML\CAS\XML\cas\AbstractResponse $response
-     */
-    private function setResponse(AbstractResponse $response): void
-    {
-        $this->response = $response;
     }
 
 

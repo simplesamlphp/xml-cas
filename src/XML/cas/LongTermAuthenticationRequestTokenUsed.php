@@ -15,7 +15,7 @@ use SimpleSAML\XML\StringElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
+final class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
 {
     use StringElementTrait;
 

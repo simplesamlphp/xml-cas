@@ -14,13 +14,10 @@ use SimpleSAML\XML\Exception\MissingElementException;
  *
  * @package simplesamlphp/cas
  */
-class Proxies extends AbstractCasElement
+final class Proxies extends AbstractCasElement
 {
     /** @var string */
     public const LOCALNAME = 'proxies';
-
-    /** @var \SimpleSAML\CAS\XML\cas\Proxy[] $proxy */
-    protected array $proxy = [];
 
 
     /**
@@ -28,9 +25,11 @@ class Proxies extends AbstractCasElement
      *
      * @param \SimpleSAML\CAS\XML\cas\Proxy[] $proxy
      */
-    final public function __construct(array $proxy = [])
-    {
-        $this->setProxy($proxy);
+    final public function __construct(
+        protected array $proxy = [],
+    ) {
+        Assert::allIsInstanceOf($proxy, Proxy::class);
+        Assert::minCount($proxy, 1, 'Missing at least one Proxy in Proxies.', MissingElementException::class);
     }
 
 
@@ -40,18 +39,6 @@ class Proxies extends AbstractCasElement
     public function getProxy(): array
     {
         return $this->proxy;
-    }
-
-
-    /**
-     * @param \SimpleSAML\CAS\XML\cas\Proxy[] $proxy
-     */
-    private function setProxy(array $proxy): void
-    {
-        Assert::allIsInstanceOf($proxy, Proxy::class);
-        Assert::minCount($proxy, 1, 'Missing at least one Proxy in Proxies.', MissingElementException::class);
-
-        $this->proxy = $proxy;
     }
 
 

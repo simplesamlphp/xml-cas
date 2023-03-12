@@ -15,22 +15,10 @@ use SimpleSAML\XML\Exception\MissingElementException;
  *
  * @package simplesamlphp/cas
  */
-class AuthenticationSuccess extends AbstractResponse
+final class AuthenticationSuccess extends AbstractResponse
 {
     /** @var string */
     public const LOCALNAME = 'authenticationSuccess';
-
-    /** @var \SimpleSAML\CAS\XML\cas\User */
-    protected User $user;
-
-    /** @var \SimpleSAML\CAS\XML\cas\Attributes */
-    protected Attributes $attributes;
-
-    /** @var \SimpleSAML\CAS\XML\cas\ProxyGrantingTicket|null */
-    protected ?ProxyGrantingTicket $proxyGrantingTicket = null;
-
-    /** @var \SimpleSAML\CAS\XML\cas\Proxies|null */
-    protected ?Proxies $proxies = null;
 
 
     /**
@@ -42,15 +30,11 @@ class AuthenticationSuccess extends AbstractResponse
      * @param \SimpleSAML\CAS\XML\cas\Proxies|null $proxies
      */
     final public function __construct(
-        User $user,
-        Attributes $attributes,
-        ?ProxyGrantingTicket $proxyGrantingTicket = null,
-        ?Proxies $proxies = null,
+        protected User $user,
+        protected Attributes $attributes,
+        protected ?ProxyGrantingTicket $proxyGrantingTicket = null,
+        protected ?Proxies $proxies = null,
     ) {
-        $this->setUser($user);
-        $this->setAttributes($attributes);
-        $this->setProxyGrantingTicket($proxyGrantingTicket);
-        $this->setProxies($proxies);
     }
 
 
@@ -64,29 +48,11 @@ class AuthenticationSuccess extends AbstractResponse
 
 
     /**
-     * @param \SimpleSAML\CAS\XML\cas\User $user
-     */
-    private function setUser(User $user): void
-    {
-        $this->user = $user;
-    }
-
-
-    /**
      * @return \SimpleSAML\CAS\XML\cas\Attributes
      */
     public function getAttributes(): Attributes
     {
         return $this->attributes;
-    }
-
-
-    /**
-     * @param \SimpleSAML\CAS\XML\cas\Attributes $attributes
-     */
-    private function setAttributes(Attributes $attributes): void
-    {
-        $this->attributes = $attributes;
     }
 
 
@@ -100,29 +66,11 @@ class AuthenticationSuccess extends AbstractResponse
 
 
     /**
-     * @param \SimpleSAML\CAS\XML\cas\ProxyGrantingTicket $proxyGrantingTicket
-     */
-    private function setProxyGrantingTicket(?ProxyGrantingTicket $proxyGrantingTicket): void
-    {
-        $this->proxyGrantingTicket = $proxyGrantingTicket;
-    }
-
-
-    /**
      * @return \SimpleSAML\CAS\XML\cas\Proxies
      */
     public function getProxies(): ?Proxies
     {
         return $this->proxies;
-    }
-
-
-    /**
-     * @param \SimpleSAML\CAS\XML\cas\Proxies $proxies
-     */
-    private function setProxies(?Proxies $proxies): void
-    {
-        $this->proxies = $proxies;
     }
 
 

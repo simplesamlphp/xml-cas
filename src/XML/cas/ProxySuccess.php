@@ -14,13 +14,10 @@ use SimpleSAML\XML\Exception\MissingElementException;
  *
  * @package simplesamlphp/cas
  */
-class ProxySuccess extends AbstractResponse
+final class ProxySuccess extends AbstractResponse
 {
     /** @var string */
     public const LOCALNAME = 'proxySuccess';
-
-    /** @var \SimpleSAML\CAS\XML\cas\ProxyTicket $proxyTicket */
-    protected ProxyTicket $proxyTicket;
 
 
     /**
@@ -28,9 +25,9 @@ class ProxySuccess extends AbstractResponse
      *
      * @param \SimpleSAML\CAS\XML\cas\ProxyTicket $proxyTicket
      */
-    final public function __construct(ProxyTicket $proxyTicket)
-    {
-        $this->setProxyTicket($proxyTicket);
+    final public function __construct(
+        protected ProxyTicket $proxyTicket,
+    ) {
     }
 
 
@@ -40,15 +37,6 @@ class ProxySuccess extends AbstractResponse
     public function getProxyTicket(): ProxyTicket
     {
         return $this->proxyTicket;
-    }
-
-
-    /**
-     * @param \SimpleSAML\CAS\XML\cas\ProxyTicket $proxyTicket
-     */
-    private function setProxyTicket(ProxyTicket $proxyTicket): void
-    {
-        $this->proxyTicket = $proxyTicket;
     }
 
 

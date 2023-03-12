@@ -14,7 +14,7 @@ use SimpleSAML\XML\StringElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class User extends AbstractCasElement
+final class User extends AbstractCasElement
 {
     use StringElementTrait;
 

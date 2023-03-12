@@ -17,7 +17,7 @@ use SimpleSAML\XML\ExtendableElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class Attributes extends AbstractCasElement
+final class Attributes extends AbstractCasElement
 {
     use ExtendableElementTrait;
 
@@ -26,15 +26,6 @@ class Attributes extends AbstractCasElement
 
     /** The namespace-attribute for the xs:any element */
     public const NAMESPACE = C::XS_ANY_NS_ANY;
-
-    /** @var \SimpleSAML\CAS\XML\cas\AuthenticationDate $authenticationDate */
-    protected AuthenticationDate $authenticationDate;
-
-    /** @var \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed */
-    protected LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed;
-
-    /** @var \SimpleSAML\CAS\XML\cas\IsFromNewLogin $isFromNewLogin */
-    protected IsFromNewLogin $isFromNewLogin;
 
 
     /**
@@ -46,14 +37,11 @@ class Attributes extends AbstractCasElement
      * @param \SimpleSAML\XML\Chunk[] $elts
      */
     final public function __construct(
-        AuthenticationDate $authenticationDate,
-        LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
-        IsFromNewLogin $isFromNewLogin,
+        protected AuthenticationDate $authenticationDate,
+        protected LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
+        protected IsFromNewLogin $isFromNewLogin,
         array $elts = [],
     ) {
-        $this->setAuthenticationDate($authenticationDate);
-        $this->setLongTermAuthenticationRequestTokenUsed($longTermAuthenticationRequestTokenUsed);
-        $this->setIsFromNewLogin($isFromNewLogin);
         $this->setElements($elts);
     }
 
@@ -68,15 +56,6 @@ class Attributes extends AbstractCasElement
 
 
     /**
-     * @param \SimpleSAML\CAS\XML\cas\AuthenticationDate $authenticationDate
-     */
-    private function setAuthenticationDate(AuthenticationDate $authenticationDate): void
-    {
-        $this->authenticationDate = $authenticationDate;
-    }
-
-
-    /**
      * @return \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed
      */
     public function getLongTermAuthenticationRequestTokenUsed(): LongTermAuthenticationRequestTokenUsed
@@ -86,30 +65,11 @@ class Attributes extends AbstractCasElement
 
 
     /**
-     * @param \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
-     */
-    private function setLongTermAuthenticationRequestTokenUsed(
-        LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
-    ): void {
-        $this->longTermAuthenticationRequestTokenUsed = $longTermAuthenticationRequestTokenUsed;
-    }
-
-
-    /**
      * @return \SimpleSAML\CAS\XML\cas\IsFromNewLogin
      */
     public function getIsFromNewLogin(): IsFromNewLogin
     {
         return $this->isFromNewLogin;
-    }
-
-
-    /**
-     * @param \SimpleSAML\CAS\XML\cas\IsFromNewLogin $isFromNewLogin
-     */
-    private function setIsFromNewLogin(IsFromNewLogin $isFromNewLogin): void
-    {
-        $this->isFromNewLogin = $isFromNewLogin;
     }
 
 

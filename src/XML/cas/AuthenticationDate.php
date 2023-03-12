@@ -15,7 +15,7 @@ use SimpleSAML\XML\StringElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class AuthenticationDate extends AbstractCasElement
+final class AuthenticationDate extends AbstractCasElement
 {
     use StringElementTrait;
 

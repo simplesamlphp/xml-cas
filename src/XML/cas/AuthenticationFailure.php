@@ -15,19 +15,13 @@ use SimpleSAML\XML\StringElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class AuthenticationFailure extends AbstractResponse
+final class AuthenticationFailure extends AbstractResponse
 {
     use StringElementTrait;
 
     /** @var string */
     public const LOCALNAME = 'authenticationFailure';
 
-    /**
-     * The code for this failure
-     *
-     * @var string
-     */
-    protected string $code;
 
     /**
      * Create a new instance of AuthenticationFailure
@@ -35,11 +29,14 @@ class AuthenticationFailure extends AbstractResponse
      * @param string $content
      * @param string $code
      */
-    final public function __construct(string $content, string $code)
-    {
+    final public function __construct(
+        string $content,
+        protected string $code,
+    ) {
+        Assert::notEmpty($code, 'The code in AuthenticationFailure must not be a empty.');
         $this->setContent($content);
-        $this->setCode($code);
     }
+
 
     /**
      * Collect the value of the code-property
@@ -49,19 +46,6 @@ class AuthenticationFailure extends AbstractResponse
     public function getCode(): string
     {
         return $this->code;
-    }
-
-
-    /**
-     * Set the value of the code-property
-     *
-     * @param string $code
-     * @throws \SimpleSAML\Assert\AssertionFailedException
-     */
-    protected function setCode(string $code): void
-    {
-        Assert::notEmpty($code, 'The code in AuthenticationFailure must not be a empty.');
-        $this->code = $code;
     }
 
 

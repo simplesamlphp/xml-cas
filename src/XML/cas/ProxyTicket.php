@@ -14,7 +14,7 @@ use SimpleSAML\XML\StringElementTrait;
  *
  * @package simplesamlphp/cas
  */
-class ProxyTicket extends AbstractCasElement
+final class ProxyTicket extends AbstractCasElement
 {
     use StringElementTrait;
 
