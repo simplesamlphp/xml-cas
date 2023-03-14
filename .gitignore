@@ -1,4 +1,5 @@
 /build/
+/.phpunit.cache/
 /cache.properties
 /composer.lock
 /composer.phar
