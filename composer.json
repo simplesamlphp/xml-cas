@@ -13,7 +13,7 @@
         "ext-dom": "*",
 
         "psr/log": "^2.0 || ^3.0",
-        "simplesamlphp/xml-common": "^1.5.0",
+        "simplesamlphp/xml-common": "^1.7.0",
         "simplesamlphp/assert": "^1.0.2"
     },
     "require-dev": {
@@ -31,7 +31,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "v0.0.x-dev"
+            "dev-master": "v1.0.x-dev"
         }
     },
     "config": {
