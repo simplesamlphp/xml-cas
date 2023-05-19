@@ -1,5 +1,5 @@
 {
-    "name": "simplesamlphp/cas",
+    "name": "simplesamlphp/xml-cas",
     "description": "CAS PHP library from SimpleSAMLphp",
     "license": "LGPL-2.1-or-later",
     "authors": [
