@@ -83,7 +83,6 @@ final class AuthenticationFailure extends AbstractResponse
             MissingAttributeException::class,
         );
 
-        /** @psalm-var string $code */
         $code = self::getAttribute($xml, 'code');
         return new static(trim($xml->textContent), $code);
     }
