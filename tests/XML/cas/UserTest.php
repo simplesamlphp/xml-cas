@@ -25,13 +25,14 @@ final class UserTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = User::class;
+        self::$testedClass = User::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_user.xml',
         );
     }
@@ -44,7 +45,7 @@ final class UserTest extends TestCase
         $user = new User('username');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($user),
         );
     }
@@ -54,10 +55,10 @@ final class UserTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $user = User::fromXML($this->xmlRepresentation->documentElement);
+        $user = User::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($user),
         );
     }

@@ -37,13 +37,13 @@ final class ServiceResponseTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->schema = dirname(__FILE__, 4) . '/resources/schemas/cas-server-protocol-3.0.xsd';
+        self::$schemaFile = dirname(__FILE__, 4) . '/resources/schemas/cas-server-protocol-3.0.xsd';
 
-        $this->testedClass = ServiceResponse::class;
+        self::$testedClass = ServiceResponse::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_serviceResponse.xml',
         );
     }
@@ -69,7 +69,7 @@ final class ServiceResponseTest extends TestCase
         $serviceResponse = new ServiceResponse($authenticationSuccess);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($serviceResponse),
         );
     }
@@ -79,10 +79,10 @@ final class ServiceResponseTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $serviceResponse = ServiceResponse::fromXML($this->xmlRepresentation->documentElement);
+        $serviceResponse = ServiceResponse::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($serviceResponse),
         );
     }

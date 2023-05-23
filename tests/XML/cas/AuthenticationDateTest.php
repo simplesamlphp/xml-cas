@@ -27,11 +27,11 @@ final class AuthenticationDateTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = AuthenticationDate::class;
+        self::$testedClass = AuthenticationDate::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_authenticationDate.xml',
         );
     }
@@ -44,7 +44,7 @@ final class AuthenticationDateTest extends TestCase
         $authenticationDate = new AuthenticationDate('2015-11-12T09:30:10Z');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($authenticationDate),
         );
     }
@@ -54,10 +54,10 @@ final class AuthenticationDateTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $authenticationDate = AuthenticationDate::fromXML($this->xmlRepresentation->documentElement);
+        $authenticationDate = AuthenticationDate::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($authenticationDate),
         );
     }

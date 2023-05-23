@@ -25,13 +25,14 @@ final class ProxyTicketTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ProxyTicket::class;
+        self::$testedClass = ProxyTicket::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_proxyTicket.xml',
         );
     }
@@ -44,7 +45,7 @@ final class ProxyTicketTest extends TestCase
         $proxyTicket = new ProxyTicket('PT-1856392-b98xZrQN4p90ASrw96c8');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxyTicket),
         );
     }
@@ -54,10 +55,10 @@ final class ProxyTicketTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $proxyTicket = ProxyTicket::fromXML($this->xmlRepresentation->documentElement);
+        $proxyTicket = ProxyTicket::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxyTicket),
         );
     }

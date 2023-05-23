@@ -25,13 +25,14 @@ final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = LongTermAuthenticationRequestTokenUsed::class;
+        self::$testedClass = LongTermAuthenticationRequestTokenUsed::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_longTermAuthenticationRequestTokenUsed.xml',
         );
     }
@@ -44,7 +45,7 @@ final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
         $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($longTerm),
         );
     }
@@ -54,10 +55,10 @@ final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $longTerm = LongTermAuthenticationRequestTokenUsed::fromXML($this->xmlRepresentation->documentElement);
+        $longTerm = LongTermAuthenticationRequestTokenUsed::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($longTerm),
         );
     }

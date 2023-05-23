@@ -27,13 +27,14 @@ final class ProxyFailureTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ProxyFailure::class;
+        self::$testedClass = ProxyFailure::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_proxyFailure.xml',
         );
     }
@@ -46,7 +47,7 @@ final class ProxyFailureTest extends TestCase
         $proxyFailure = new ProxyFailure('some text', C::ERR_INVALID_REQUEST);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxyFailure),
         );
     }
@@ -56,10 +57,10 @@ final class ProxyFailureTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $proxyFailure = ProxyFailure::fromXML($this->xmlRepresentation->documentElement);
+        $proxyFailure = ProxyFailure::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxyFailure),
         );
     }

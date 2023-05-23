@@ -27,13 +27,14 @@ final class AuthenticationFailureTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = AuthenticationFailure::class;
+        self::$testedClass = AuthenticationFailure::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_authenticationFailure.xml',
         );
     }
@@ -49,7 +50,7 @@ final class AuthenticationFailureTest extends TestCase
         );
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($authenticationFailure),
         );
     }
@@ -59,10 +60,10 @@ final class AuthenticationFailureTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $authenticationFailure = AuthenticationFailure::fromXML($this->xmlRepresentation->documentElement);
+        $authenticationFailure = AuthenticationFailure::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($authenticationFailure),
         );
     }

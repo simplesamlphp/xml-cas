@@ -27,13 +27,14 @@ final class ProxiesTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Proxies::class;
+        self::$testedClass = Proxies::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_proxies.xml',
         );
     }
@@ -48,7 +49,7 @@ final class ProxiesTest extends TestCase
         $list = new Proxies([$entry1, $entry2]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($list),
         );
     }
@@ -58,10 +59,10 @@ final class ProxiesTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $list = Proxies::fromXML($this->xmlRepresentation->documentElement);
+        $list = Proxies::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($list),
         );
     }

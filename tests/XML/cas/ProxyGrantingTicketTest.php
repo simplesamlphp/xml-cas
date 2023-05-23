@@ -25,13 +25,14 @@ final class ProxyGrantingTicketTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ProxyGrantingTicket::class;
+        self::$testedClass = ProxyGrantingTicket::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_proxyGrantingTicket.xml',
         );
     }
@@ -44,7 +45,7 @@ final class ProxyGrantingTicketTest extends TestCase
         $proxyGrantingTicket = new ProxyGrantingTicket('PGTIOU-84678-8a9d...');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxyGrantingTicket),
         );
     }
@@ -54,10 +55,10 @@ final class ProxyGrantingTicketTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $proxyGrantingTicket = ProxyGrantingTicket::fromXML($this->xmlRepresentation->documentElement);
+        $proxyGrantingTicket = ProxyGrantingTicket::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxyGrantingTicket),
         );
     }

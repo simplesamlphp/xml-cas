@@ -33,11 +33,11 @@ final class AttributesTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Attributes::class;
+        self::$testedClass = Attributes::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_attributes.xml',
         );
     }
@@ -57,7 +57,7 @@ final class AttributesTest extends TestCase
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($attributes),
         );
     }
@@ -99,10 +99,10 @@ final class AttributesTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $attributes = Attributes::fromXML($this->xmlRepresentation->documentElement);
+        $attributes = Attributes::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($attributes),
         );
     }

@@ -30,11 +30,11 @@ final class ProxySuccessTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ProxySuccess::class;
+        self::$testedClass = ProxySuccess::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_proxySuccess.xml',
         );
     }
@@ -47,7 +47,7 @@ final class ProxySuccessTest extends TestCase
         $proxySuccess = new ProxySuccess(new ProxyTicket('PT-1856392-b98xZrQN4p90ASrw96c8'));
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxySuccess),
         );
     }
@@ -57,10 +57,10 @@ final class ProxySuccessTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $proxySuccess = ProxySuccess::fromXML($this->xmlRepresentation->documentElement);
+        $proxySuccess = ProxySuccess::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxySuccess),
         );
     }

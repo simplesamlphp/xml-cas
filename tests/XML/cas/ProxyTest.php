@@ -27,11 +27,11 @@ final class ProxyTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Proxy::class;
+        self::$testedClass = Proxy::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_proxy.xml',
         );
     }
@@ -44,7 +44,7 @@ final class ProxyTest extends TestCase
         $proxy = new Proxy('https://example.org/proxy');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxy),
         );
     }
@@ -54,10 +54,10 @@ final class ProxyTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $proxy = Proxy::fromXML($this->xmlRepresentation->documentElement);
+        $proxy = Proxy::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($proxy),
         );
     }

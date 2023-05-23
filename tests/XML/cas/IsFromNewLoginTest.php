@@ -25,13 +25,14 @@ final class IsFromNewLoginTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = IsFromNewLogin::class;
+        self::$testedClass = IsFromNewLogin::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_isFromNewLogin.xml',
         );
     }
@@ -44,7 +45,7 @@ final class IsFromNewLoginTest extends TestCase
         $isFromNewLogin = new IsFromNewLogin('true');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($isFromNewLogin),
         );
     }
@@ -54,10 +55,10 @@ final class IsFromNewLoginTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $isFromNewLogin = IsFromNewLogin::fromXML($this->xmlRepresentation->documentElement);
+        $isFromNewLogin = IsFromNewLogin::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($isFromNewLogin),
         );
     }
