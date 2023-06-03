@@ -28,6 +28,7 @@ final class Proxies extends AbstractCasElement
     final public function __construct(
         protected array $proxy = [],
     ) {
+        Assert::maxCount($proxy, C::UNBOUNDED_LIMIT);
         Assert::allIsInstanceOf($proxy, Proxy::class);
         Assert::minCount($proxy, 1, 'Missing at least one Proxy in Proxies.', MissingElementException::class);
     }
