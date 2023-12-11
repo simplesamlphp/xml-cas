@@ -7,10 +7,13 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Error;
+use SimpleSAML\CAS\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingAttributeException;
 use SimpleSAML\XML\StringElementTrait;
+use ValueError;
 
+use function is_string;
 use function trim;
 
 /**
@@ -30,11 +33,11 @@ final class ProxyFailure extends AbstractResponse
      * Create a new instance of ProxyFailure
      *
      * @param string $content
-     * @param \SimpleSAML\CAS\Error $code
+     * @param \SimpleSAML\CAS\Error|string $code
      */
     final public function __construct(
         string $content,
-        protected Error $code,
+        protected Error|string $code,
     ) {
         $this->setContent($content);
     }
@@ -42,9 +45,9 @@ final class ProxyFailure extends AbstractResponse
     /**
      * Collect the value of the code-property
      *
-     * @return \SimpleSAML\CAS\Error
+     * @return \SimpleSAML\CAS\Error|string
      */
-    public function getCode(): Error
+    public function getCode(): Error|string
     {
         return $this->code;
     }
@@ -84,7 +87,12 @@ final class ProxyFailure extends AbstractResponse
             MissingAttributeException::class,
         );
 
-        $code = Error::from(self::getAttribute($xml, 'code'));
+        try {
+            $code = Error::from(self::getAttribute($xml, 'code'));
+        } catch (ValueError) {
+            $code = self::getAttribute($xml, 'code');
+        }
+
         return new static(trim($xml->textContent), $code);
     }
 
@@ -99,7 +107,9 @@ final class ProxyFailure extends AbstractResponse
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent();
-        $e->setAttribute('code', $this->getCode()->value);
+
+        $code = $this->getCode();
+        $e->setAttribute('code', is_string($code) ? $code : $code->value);
 
         return $e;
     }
