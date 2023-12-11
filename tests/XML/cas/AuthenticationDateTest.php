@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
+use DateTimeImmutable;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
@@ -25,6 +26,10 @@ final class AuthenticationDateTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+    /** @var \DateTimeImmutable */
+    private static DateTimeImmutable $authenticationDate;
+
+
     /**
      */
     public static function setUpBeforeClass(): void
@@ -34,6 +39,8 @@ final class AuthenticationDateTest extends TestCase
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_authenticationDate.xml',
         );
+
+        self::$authenticationDate = new DateTimeImmutable('2015-11-12T09:30:10Z');
     }
 
 
@@ -41,7 +48,7 @@ final class AuthenticationDateTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $authenticationDate = new AuthenticationDate('2015-11-12T09:30:10Z');
+        $authenticationDate = new AuthenticationDate(self::$authenticationDate);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

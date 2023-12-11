@@ -19,7 +19,7 @@ final class Proxy extends AbstractCasElement
     use StringElementTrait;
 
     /** @var string */
-    public const LOCALNAME = 'proxy';
+    final public const LOCALNAME = 'proxy';
 
 
     /**
@@ -55,8 +55,8 @@ final class Proxy extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'proxy', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, Proxy::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         return new static($xml->textContent);
     }

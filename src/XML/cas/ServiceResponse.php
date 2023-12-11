@@ -10,6 +10,9 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 
+use function array_merge;
+use function array_pop;
+
 /**
  * Class for CAS serviceResponse
  *
@@ -18,7 +21,7 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 final class ServiceResponse extends AbstractCasElement
 {
     /** @var string */
-    public const LOCALNAME = 'serviceResponse';
+    final public const LOCALNAME = 'serviceResponse';
 
 
     /**
@@ -54,8 +57,8 @@ final class ServiceResponse extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'serviceResponse', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, ServiceResponse::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         $authenticationSuccess = AuthenticationSuccess::getChildrenOfClass($xml);
         $authenticationFailure = AuthenticationFailure::getChildrenOfClass($xml);

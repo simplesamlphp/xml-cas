@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
+use DateTimeImmutable;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Utils\XPath;
@@ -31,6 +32,10 @@ final class AttributesTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+    /** @var \DateTimeImmutable */
+    private static DateTimeImmutable $authenticationDate;
+
+
     /**
      */
     public static function setUpBeforeClass(): void
@@ -40,6 +45,8 @@ final class AttributesTest extends TestCase
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/cas_attributes.xml',
         );
+
+        self::$authenticationDate = new DateTimeImmutable('2015-11-12T09:30:10Z');
     }
 
 
@@ -47,7 +54,7 @@ final class AttributesTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $authenticationDate = new AuthenticationDate('2015-11-12T09:30:10Z');
+        $authenticationDate = new AuthenticationDate(self::$authenticationDate);
         $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
         $isFromNewLogin = new IsFromNewLogin('true');
         $document = DOMDocumentFactory::fromString(
@@ -65,7 +72,7 @@ final class AttributesTest extends TestCase
 
     public function testMarshallingElementOrdering(): void
     {
-        $authenticationDate = new AuthenticationDate('2015-11-12T09:30:10Z');
+        $authenticationDate = new AuthenticationDate(self::$authenticationDate);
         $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
         $isFromNewLogin = new IsFromNewLogin('true');
         $document = DOMDocumentFactory::fromString(

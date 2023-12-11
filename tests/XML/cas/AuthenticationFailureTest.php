@@ -6,7 +6,7 @@ namespace SimpleSAML\CAS\Test\XML\cas;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\CAS\Constants as C;
+use SimpleSAML\CAS\Error as ERR;
 use SimpleSAML\CAS\XML\cas\AuthenticationFailure;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -46,7 +46,7 @@ final class AuthenticationFailureTest extends TestCase
     {
         $authenticationFailure = new AuthenticationFailure(
             'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
-            C::ERR_INVALID_TICKET,
+            ERR::INVALID_TICKET,
         );
 
         $this->assertEquals(

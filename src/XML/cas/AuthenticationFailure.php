@@ -6,9 +6,12 @@ namespace SimpleSAML\CAS\XML\cas;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\CAS\Error;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingAttributeException;
 use SimpleSAML\XML\StringElementTrait;
+
+use function trim;
 
 /**
  * Class for CAS authenticationFailure
@@ -20,20 +23,19 @@ final class AuthenticationFailure extends AbstractResponse
     use StringElementTrait;
 
     /** @var string */
-    public const LOCALNAME = 'authenticationFailure';
+    final public const LOCALNAME = 'authenticationFailure';
 
 
     /**
      * Create a new instance of AuthenticationFailure
      *
      * @param string $content
-     * @param string $code
+     * @param \SimpleSAML\CAS\Error $code
      */
     final public function __construct(
         string $content,
-        protected string $code,
+        protected Error $code,
     ) {
-        Assert::notEmpty($code, 'The code in AuthenticationFailure must not be a empty.');
         $this->setContent($content);
     }
 
@@ -41,9 +43,9 @@ final class AuthenticationFailure extends AbstractResponse
     /**
      * Collect the value of the code-property
      *
-     * @return string
+     * @return \SimpleSAML\CAS\Error
      */
-    public function getCode(): string
+    public function getCode(): Error
     {
         return $this->code;
     }
@@ -75,15 +77,15 @@ final class AuthenticationFailure extends AbstractResponse
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'authenticationFailure', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, ProxyFailure::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
         Assert::true(
             $xml->hasAttribute('code'),
             'Missing code from ' . static::getLocalName(),
             MissingAttributeException::class,
         );
 
-        $code = self::getAttribute($xml, 'code');
+        $code = Error::from(self::getAttribute($xml, 'code'));
         return new static(trim($xml->textContent), $code);
     }
 
@@ -98,7 +100,7 @@ final class AuthenticationFailure extends AbstractResponse
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent();
-        $e->setAttribute('code', $this->getCode());
+        $e->setAttribute('code', $this->getCode()->value);
 
         return $e;
     }

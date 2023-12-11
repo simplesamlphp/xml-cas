@@ -9,6 +9,8 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 
+use function array_pop;
+
 /**
  * Class for CAS proxySuccess
  *
@@ -17,7 +19,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 final class ProxySuccess extends AbstractResponse
 {
     /** @var string */
-    public const LOCALNAME = 'proxySuccess';
+    final public const LOCALNAME = 'proxySuccess';
 
 
     /**
@@ -53,8 +55,8 @@ final class ProxySuccess extends AbstractResponse
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'proxySuccess', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, ProxySuccess::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         $proxyTicket = ProxyTicket::getChildrenOfClass($xml);
         Assert::count(

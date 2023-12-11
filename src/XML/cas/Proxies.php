@@ -6,6 +6,7 @@ namespace SimpleSAML\CAS\XML\cas;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 
@@ -17,7 +18,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 final class Proxies extends AbstractCasElement
 {
     /** @var string */
-    public const LOCALNAME = 'proxies';
+    final public const LOCALNAME = 'proxies';
 
 
     /**
@@ -56,8 +57,8 @@ final class Proxies extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'proxies', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, Proxies::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         $proxy = Proxy::getChildrenOfClass($xml);
         Assert::minCount($proxy, 1, 'Missing at least one Proxy in Proxies.', MissingElementException::class);

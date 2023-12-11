@@ -19,7 +19,7 @@ final class ProxyGrantingTicket extends AbstractCasElement
     use StringElementTrait;
 
     /** @var string */
-    public const LOCALNAME = 'proxyGrantingTicket';
+    final public const LOCALNAME = 'proxyGrantingTicket';
 
 
     /**
@@ -55,8 +55,8 @@ final class ProxyGrantingTicket extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'proxyGrantingTicket', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, ProxyGrantingTicket::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         return new static($xml->textContent);
     }

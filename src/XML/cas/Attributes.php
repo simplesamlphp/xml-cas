@@ -12,6 +12,8 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
 
+use function array_pop;
+
 /**
  * Class for CAS attributes
  *
@@ -22,10 +24,10 @@ final class Attributes extends AbstractCasElement
     use ExtendableElementTrait;
 
     /** @var string */
-    public const LOCALNAME = 'attributes';
+    final public const LOCALNAME = 'attributes';
 
     /** The namespace-attribute for the xs:any element */
-    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_ANY;
+    final public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_ANY;
 
 
     /**
@@ -86,8 +88,8 @@ final class Attributes extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'attributes', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, Attributes::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         $authenticationDate = AuthenticationDate::getChildrenOfClass($xml);
         Assert::count(

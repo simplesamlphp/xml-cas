@@ -10,6 +10,8 @@ use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 
+use function array_pop;
+
 /**
  * Class for CAS authenticationSuccess
  *
@@ -18,7 +20,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 final class AuthenticationSuccess extends AbstractResponse
 {
     /** @var string */
-    public const LOCALNAME = 'authenticationSuccess';
+    final public const LOCALNAME = 'authenticationSuccess';
 
 
     /**
@@ -87,8 +89,8 @@ final class AuthenticationSuccess extends AbstractResponse
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'authenticationSuccess', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, AuthenticationSuccess::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         $user = User::getChildrenOfClass($xml);
         Assert::count(

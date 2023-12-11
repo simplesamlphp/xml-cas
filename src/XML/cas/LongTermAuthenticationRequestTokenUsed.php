@@ -20,7 +20,7 @@ final class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
     use StringElementTrait;
 
     /** @var string */
-    public const LOCALNAME = 'longTermAuthenticationRequestTokenUsed';
+    final public const LOCALNAME = 'longTermAuthenticationRequestTokenUsed';
 
 
     /**
@@ -45,7 +45,7 @@ final class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
         Assert::oneOf(
             $content,
             ['true', 'false', '0', '1'],
-            'The value of ' . static::getNamespacePrefix() . ':' . self::getLocalName() . ' must be boolean.',
+            'The value of ' . static::getNamespacePrefix() . ':' . static::getLocalName() . ' must be boolean.',
             ProtocolViolationException::class,
         );
     }
@@ -62,8 +62,8 @@ final class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'longTermAuthenticationRequestTokenUsed', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, LongTermAuthenticationRequestTokenUsed::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         return new static($xml->textContent);
     }

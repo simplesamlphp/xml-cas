@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\XML\cas;
 
+use DateTimeImmutable;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\CAS\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\StringElementTrait;
 
 /**
  * Class for CAS authenticationDate
@@ -17,31 +18,41 @@ use SimpleSAML\XML\StringElementTrait;
  */
 final class AuthenticationDate extends AbstractCasElement
 {
-    use StringElementTrait;
-
     /** @var string */
-    public const LOCALNAME = 'authenticationDate';
+    final public const LOCALNAME = 'authenticationDate';
 
 
     /**
-     * @param string $content
+     * @param \DateTimeImmutable $timestamp
      */
-    final public function __construct(string $content)
-    {
-        $this->setContent($content);
+    final public function __construct(
+        protected DateTimeImmutable $timestamp
+    ) {
     }
 
 
     /**
-     * Validate the content of the element.
+     * Retrieve the issue timestamp of this message.
      *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \Exception on failure
-     * @return void
+     * @return \DateTimeImmutable The issue timestamp of this message, as an UNIX timestamp
      */
-    protected function validateContent(string $content): void
+    public function getTimestamp(): DateTimeImmutable
     {
-        Assert::validDateTimeZulu($content, ProtocolViolationException::class);
+        return $this->timestamp;
+    }
+
+
+    /**
+     * Convert this element into an XML document.
+     *
+     * @return \DOMElement The root element of the DOM tree
+     */
+    public function toXML(?DOMElement $parent = null): DOMElement
+    {
+        $root = $this->instantiateParentElement($parent);
+        $root->textContent = $this->getTimestamp()->format(C::DATETIME_FORMAT);
+
+        return $root;
     }
 
 
@@ -56,9 +67,9 @@ final class AuthenticationDate extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'authenticationDate', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, AuthenticationDate::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
-        return new static($xml->textContent);
+        return new static(new DateTimeImmutable($xml->textContent));
     }
 }

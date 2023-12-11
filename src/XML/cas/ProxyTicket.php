@@ -19,7 +19,7 @@ final class ProxyTicket extends AbstractCasElement
     use StringElementTrait;
 
     /** @var string */
-    public const LOCALNAME = 'proxyTicket';
+    final public const LOCALNAME = 'proxyTicket';
 
 
     /**
@@ -55,8 +55,8 @@ final class ProxyTicket extends AbstractCasElement
      */
     public static function fromXML(DOMElement $xml): static
     {
-        Assert::same($xml->localName, 'proxyTicket', InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, ProxyTicket::NS, InvalidDOMElementException::class);
+        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
+        Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
         return new static($xml->textContent);
     }
