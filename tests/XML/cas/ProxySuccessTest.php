@@ -51,17 +51,4 @@ final class ProxySuccessTest extends TestCase
             strval($proxySuccess),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $proxySuccess = ProxySuccess::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($proxySuccess),
-        );
-    }
 }

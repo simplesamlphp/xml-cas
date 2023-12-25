@@ -49,17 +49,4 @@ final class IsFromNewLoginTest extends TestCase
             strval($isFromNewLogin),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $isFromNewLogin = IsFromNewLogin::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($isFromNewLogin),
-        );
-    }
 }

@@ -55,17 +55,4 @@ final class AuthenticationDateTest extends TestCase
             strval($authenticationDate),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $authenticationDate = AuthenticationDate::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($authenticationDate),
-        );
-    }
 }

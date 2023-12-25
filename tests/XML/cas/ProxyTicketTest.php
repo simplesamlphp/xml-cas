@@ -49,17 +49,4 @@ final class ProxyTicketTest extends TestCase
             strval($proxyTicket),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $proxyTicket = ProxyTicket::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($proxyTicket),
-        );
-    }
 }

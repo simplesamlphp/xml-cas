@@ -80,17 +80,4 @@ final class ServiceResponseTest extends TestCase
             strval($serviceResponse),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $serviceResponse = ServiceResponse::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($serviceResponse),
-        );
-    }
 }

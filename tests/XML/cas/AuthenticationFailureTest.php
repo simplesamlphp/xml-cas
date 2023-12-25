@@ -54,17 +54,4 @@ final class AuthenticationFailureTest extends TestCase
             strval($authenticationFailure),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $authenticationFailure = AuthenticationFailure::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($authenticationFailure),
-        );
-    }
 }

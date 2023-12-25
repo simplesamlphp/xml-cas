@@ -100,17 +100,4 @@ final class AttributesTest extends TestCase
         $this->assertEquals('cas:longTermAuthenticationRequestTokenUsed', $attributesElements[0]->tagName);
         $this->assertEquals('cas:isFromNewLogin', $attributesElements[1]->tagName);
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $attributes = Attributes::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($attributes),
-        );
-    }
 }

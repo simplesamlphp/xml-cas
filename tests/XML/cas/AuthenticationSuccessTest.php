@@ -146,17 +146,4 @@ final class AuthenticationSuccessTest extends TestCase
         $this->assertEquals('cas:proxyGrantingTicket', $authenticationSuccessElements[1]->tagName);
         $this->assertEquals('cas:proxies', $authenticationSuccessElements[2]->tagName);
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $authenticationSuccess = AuthenticationSuccess::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($authenticationSuccess),
-        );
-    }
 }

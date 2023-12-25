@@ -11,6 +11,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_pop;
 
@@ -27,7 +28,7 @@ final class Attributes extends AbstractCasElement
     final public const LOCALNAME = 'attributes';
 
     /** The namespace-attribute for the xs:any element */
-    final public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_ANY;
+    final public const XS_ANY_ELT_NAMESPACE = NS::ANY;
 
 
     /**

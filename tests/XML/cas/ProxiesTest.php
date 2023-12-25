@@ -53,17 +53,4 @@ final class ProxiesTest extends TestCase
             strval($list),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $list = Proxies::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($list),
-        );
-    }
 }

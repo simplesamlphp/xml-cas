@@ -49,17 +49,4 @@ final class ProxyGrantingTicketTest extends TestCase
             strval($proxyGrantingTicket),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $proxyGrantingTicket = ProxyGrantingTicket::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($proxyGrantingTicket),
-        );
-    }
 }

@@ -49,17 +49,4 @@ final class UserTest extends TestCase
             strval($user),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $user = User::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($user),
-        );
-    }
 }

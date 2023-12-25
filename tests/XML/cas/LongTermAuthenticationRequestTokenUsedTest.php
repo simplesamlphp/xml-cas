@@ -49,17 +49,4 @@ final class LongTermAuthenticationRequestTokenUsedTest extends TestCase
             strval($longTerm),
         );
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $longTerm = LongTermAuthenticationRequestTokenUsed::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($longTerm),
-        );
-    }
 }
