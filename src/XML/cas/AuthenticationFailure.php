@@ -7,7 +7,6 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Error;
-use SimpleSAML\CAS\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingAttributeException;
 use SimpleSAML\XML\StringElementTrait;

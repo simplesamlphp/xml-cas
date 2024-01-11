@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\CAS\Test\XML\cas;
 
 use DateTimeImmutable;
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
 use SimpleSAML\XML\DOMDocumentFactory;

@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\Proxies;
 use SimpleSAML\CAS\XML\cas\Proxy;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;

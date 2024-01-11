@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\CAS\Test\XML\cas;
 
 use DateTimeImmutable;
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\Attributes;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
@@ -15,10 +14,10 @@ use SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed;
 use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\ServiceResponse;
 use SimpleSAML\CAS\XML\cas\User;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;

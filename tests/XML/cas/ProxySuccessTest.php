@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\CAS\XML\cas\ProxySuccess;
 use SimpleSAML\CAS\XML\cas\ProxyTicket;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;

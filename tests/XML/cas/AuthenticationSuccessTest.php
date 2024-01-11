@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\CAS\Test\XML\cas;
 
 use DateTimeImmutable;
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Utils\XPath;
 use SimpleSAML\CAS\XML\cas\Attributes;
@@ -13,9 +12,9 @@ use SimpleSAML\CAS\XML\cas\AuthenticationDate;
 use SimpleSAML\CAS\XML\cas\AuthenticationSuccess;
 use SimpleSAML\CAS\XML\cas\IsFromNewLogin;
 use SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed;
-use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\Proxies;
 use SimpleSAML\CAS\XML\cas\Proxy;
+use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\User;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;

@@ -8,7 +8,6 @@ use DateTimeImmutable;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Constants as C;
-use SimpleSAML\CAS\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 
 /**
