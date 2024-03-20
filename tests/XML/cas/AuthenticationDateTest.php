@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\CAS\Test\XML\cas;
 
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\CAS\XML\cas\AbstractCasElement;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -16,11 +18,10 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\cas\AuthenticationDateTest
  *
- * @covers \SimpleSAML\CAS\XML\cas\AuthenticationDate
- * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
- *
  * @package simplesamlphp/cas
  */
+#[CoversClass(AuthenticationDate::class)]
+#[CoversClass(AbstractCasElement::class)]
 final class AuthenticationDateTest extends TestCase
 {
     use SerializableElementTestTrait;

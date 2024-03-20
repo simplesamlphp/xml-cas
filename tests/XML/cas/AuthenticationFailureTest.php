@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Error as ERR;
+use SimpleSAML\CAS\XML\cas\AbstractCasElement;
+use SimpleSAML\CAS\XML\cas\AbstractResponse;
 use SimpleSAML\CAS\XML\cas\AuthenticationFailure;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -16,12 +19,11 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\cas\AuthenticationFailureTest
  *
- * @covers \SimpleSAML\CAS\XML\cas\AuthenticationFailure
- * @covers \SimpleSAML\CAS\XML\cas\AbstractResponse
- * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
- *
  * @package simplesamlphp/cas
  */
+#[CoversClass(AuthenticationFailure::class)]
+#[CoversClass(AbstractResponse::class)]
+#[CoversClass(AbstractCasElement::class)]
 final class AuthenticationFailureTest extends TestCase
 {
     use SerializableElementTestTrait;

@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\CAS\Test\XML\cas;
 
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Utils\XPath;
+use SimpleSAML\CAS\XML\cas\AbstractCasElement;
+use SimpleSAML\CAS\XML\cas\AbstractResponse;
 use SimpleSAML\CAS\XML\cas\Attributes;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
 use SimpleSAML\CAS\XML\cas\AuthenticationSuccess;
@@ -26,13 +29,12 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\cas\AuthenticationSuccessTest
  *
- * @covers \SimpleSAML\CAS\Utils\XPath
- * @covers \SimpleSAML\CAS\XML\cas\AuthenticationSuccess
- * @covers \SimpleSAML\CAS\XML\cas\AbstractResponse
- * @covers \SimpleSAML\CAS\XML\cas\AbstractCasElement
- *
  * @package simplesamlphp/cas
  */
+#[CoversClass(XPath::class)]
+#[CoversClass(AuthenticationSuccess::class)]
+#[CoversClass(AbstractResponse::class)]
+#[CoversClass(AbstractCasElement::class)]
 final class AuthenticationSuccessTest extends TestCase
 {
     use SerializableElementTestTrait;

@@ -12,8 +12,8 @@
         "php": "^8.1",
         "ext-dom": "*",
 
-        "simplesamlphp/assert": "^1.0",
-        "simplesamlphp/xml-common": "^1.14"
+        "simplesamlphp/assert": "^1.1",
+        "simplesamlphp/xml-common": "^1.16"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "^1.5"
