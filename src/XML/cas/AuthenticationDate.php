@@ -25,7 +25,7 @@ final class AuthenticationDate extends AbstractCasElement
      * @param \DateTimeImmutable $timestamp
      */
     final public function __construct(
-        protected DateTimeImmutable $timestamp
+        protected DateTimeImmutable $timestamp,
     ) {
     }
 
