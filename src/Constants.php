@@ -29,5 +29,5 @@ class Constants extends \SimpleSAML\XML\Constants
     /**
      * The INVALID_SERVICE CAS error
      */
-    final public const ERR_INVALID_SERVICe = 'INVALID_SERVICE';
+    final public const ERR_INVALID_SERVICE = 'INVALID_SERVICE';
 }
