@@ -20,4 +20,14 @@ class Constants extends \SimpleSAML\XML\Constants
      * The format to express a timestamp in CAS
      */
     final public const DATETIME_FORMAT = 'Y-m-d\\TH:i:sp';
+
+    /**
+     * The INVALID_TICKET CAS error
+     */
+    final public const ERR_INVALID_TICKET = 'INVALID_TICKET';
+
+    /**
+     * The INVALID_SERVICE CAS error
+     */
+    final public const ERR_INVALID_SERVICe = 'INVALID_SERVICE';
 }
