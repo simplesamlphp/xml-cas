@@ -22,12 +22,22 @@ class Constants extends \SimpleSAML\XML\Constants
     final public const DATETIME_FORMAT = 'Y-m-d\\TH:i:sp';
 
     /**
-     * The INVALID_TICKET CAS error
+     * The INTERNAL_ERROR CAS error
      */
-    final public const ERR_INVALID_TICKET = 'INVALID_TICKET';
+    final public const ERR_INTERNAL_ERROR = 'INTERNAL_ERROR';
+
+    /**
+     * The INVALID_REQUEST CAS error
+     */
+    final public const ERR_INVALID_REQUEST = 'INVALID_REQUEST';
 
     /**
      * The INVALID_SERVICE CAS error
      */
     final public const ERR_INVALID_SERVICE = 'INVALID_SERVICE';
+
+    /**
+     * The INVALID_TICKET CAS error
+     */
+    final public const ERR_INVALID_TICKET = 'INVALID_TICKET';
 }
