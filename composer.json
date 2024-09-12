@@ -1,6 +1,7 @@
 {
     "name": "simplesamlphp/xml-cas",
     "description": "CAS PHP library from SimpleSAMLphp",
+    "type": "simplesamlphp-xmlprovider",
     "license": "LGPL-2.1-or-later",
     "authors": [
          {
@@ -37,7 +38,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "simplesamlphp/composer-xmlprovider-installer": true
         }
     }
 }
