@@ -43,7 +43,7 @@ final class Attributes extends AbstractCasElement
      * @param \SimpleSAML\CAS\XML\cas\AuthenticationDate $authenticationDate
      * @param \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
      * @param \SimpleSAML\CAS\XML\cas\IsFromNewLogin $isFromNewLogin
-     * @param \SimpleSAML\XML\Chunk[] $elts
+     * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      */
     final public function __construct(
         protected AuthenticationDate $authenticationDate,
