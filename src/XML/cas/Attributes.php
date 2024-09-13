@@ -7,7 +7,6 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Constants as C;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
