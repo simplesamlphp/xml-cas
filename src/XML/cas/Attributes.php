@@ -7,7 +7,6 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Constants as C;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -30,6 +29,13 @@ final class Attributes extends AbstractCasElement
     /** The namespace-attribute for the xs:any element */
     final public const XS_ANY_ELT_NAMESPACE = NS::ANY;
 
+    /** The exclusions for the xs:any element */
+    final public const XS_ANY_ELT_EXCLUSIONS = [
+        [C::NS_CAS, 'authenticationDate'],
+        [C::NS_CAS, 'longTermAuthenticationRequestTokenUsed'],
+        [C::NS_CAS, 'isFromNewLogin'],
+    ];
+
 
     /**
      * Initialize a cas:attributes element
@@ -37,7 +43,7 @@ final class Attributes extends AbstractCasElement
      * @param \SimpleSAML\CAS\XML\cas\AuthenticationDate $authenticationDate
      * @param \SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed
      * @param \SimpleSAML\CAS\XML\cas\IsFromNewLogin $isFromNewLogin
-     * @param \SimpleSAML\XML\Chunk[] $elts
+     * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      */
     final public function __construct(
         protected AuthenticationDate $authenticationDate,
@@ -116,27 +122,11 @@ final class Attributes extends AbstractCasElement
             MissingElementException::class,
         );
 
-        $elts = [];
-        foreach ($xml->childNodes as $elt) {
-            if (!($elt instanceof DOMElement)) {
-                continue;
-            } elseif ($elt->namespaceURI === C::NS_CAS) {
-                switch ($elt->localName) {
-                    case 'authenticationDate':
-                    case 'longTermAuthenticationRequestTokenUsed':
-                    case 'isFromNewLogin':
-                        continue 2;
-                }
-            }
-
-            $elts[] = new Chunk($elt);
-        }
-
         return new static(
             array_pop($authenticationDate),
             array_pop($longTermAuthenticationRequestTokenUsed),
             array_pop($isFromNewLogin),
-            $elts,
+            self::getChildElementsFromXML($xml),
         );
     }
 
