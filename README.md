@@ -6,4 +6,4 @@
 [![Type coverage](https://shepherd.dev/github/simplesamlphp/xml-cas/coverage.svg)](https://shepherd.dev/github/simplesamlphp/xml-cas)
 [![Psalm Level](https://shepherd.dev/github/simplesamlphp/xml-cas/level.svg)](https://shepherd.dev/github/simplesamlphp/xml-cas)
 
-SimpleSAMLphp low-level CAS PHP library
+SimpleSAMLphp low-level CAS 3.0 PHP library
