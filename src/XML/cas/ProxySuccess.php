@@ -76,7 +76,7 @@ final class ProxySuccess extends AbstractResponse
      * @param \DOMElement|null $parent The element we should append to.
      * @return \DOMElement This ProxySuccess-element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

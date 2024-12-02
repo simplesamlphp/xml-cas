@@ -102,7 +102,7 @@ final class ProxyFailure extends AbstractResponse
      * @param \DOMElement|null $parent The element we should append to.
      * @return \DOMElement This ProxyFailure-element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent();
