@@ -19,4 +19,7 @@ abstract class AbstractCasElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'cas';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/cas-server-protocol-3.0.xsd';
 }

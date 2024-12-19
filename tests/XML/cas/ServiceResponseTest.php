@@ -44,8 +44,6 @@ final class ServiceResponseTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 4) . '/resources/schemas/cas-server-protocol-3.0.xsd';
-
         self::$testedClass = ServiceResponse::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

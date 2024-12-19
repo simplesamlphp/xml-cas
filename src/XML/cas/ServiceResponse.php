@@ -9,6 +9,8 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 use function array_merge;
 use function array_pop;
@@ -18,8 +20,10 @@ use function array_pop;
  *
  * @package simplesamlphp/cas
  */
-final class ServiceResponse extends AbstractCasElement
+final class ServiceResponse extends AbstractCasElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /** @var string */
     final public const LOCALNAME = 'serviceResponse';
 
