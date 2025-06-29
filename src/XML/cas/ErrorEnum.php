@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\CAS;
+namespace SimpleSAML\CAS\XML\cas;
 
 /**
  * The error codes defined by the CAS protocol specification
  */
-enum Error: string
+enum ErrorEnum: string
 {
     case INVALID_REQUEST = 'INVALID_REQUEST';
     case INVALID_TICKET_SPEC = 'INVALID_TICKET_SPEC';
