@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\AbstractCasElement;
@@ -16,10 +15,9 @@ use SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed;
 use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\ServiceResponse;
 use SimpleSAML\CAS\XML\cas\User;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XMLSchema\Type\Builtin\{BooleanValue, DateTimeValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -36,8 +34,8 @@ final class ServiceResponseTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
-    /** @var \DateTimeImmutable */
-    private static DateTimeImmutable $authenticationDate;
+    /** @var \SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue */
+    private static DateTimeValue $authenticationDate;
 
 
     /**
@@ -50,7 +48,7 @@ final class ServiceResponseTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/cas_serviceResponse.xml',
         );
 
-        self::$authenticationDate = new DateTimeImmutable('2015-11-12T09:30:10Z');
+        self::$authenticationDate = DateTimeValue::fromString('2015-11-12T09:30:10Z');
     }
 
 
@@ -59,17 +57,19 @@ final class ServiceResponseTest extends TestCase
     public function testMarshalling(): void
     {
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
-        $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
-        $isFromNewLogin = new IsFromNewLogin('true');
-        $document = DOMDocumentFactory::fromString(
+        $longTerm = new LongTermAuthenticationRequestTokenUsed(BooleanValue::fromString('true'));
+        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
+
+        /** @var \DOMElement $element */
+        $element = DOMDocumentFactory::fromString(
             '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
-        );
-        $myAttribute = new Chunk($document->documentElement);
+        )->documentElement;
+        $myAttribute = new Chunk($element);
 
         $authenticationSuccess = new Authenticationsuccess(
-            new User('username'),
+            new User(StringValue::fromString('username')),
             new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]),
-            new ProxyGrantingTicket('PGTIOU-84678-8a9d...'),
+            new ProxyGrantingTicket(StringValue::fromString('PGTIOU-84678-8a9d...')),
         );
         $serviceResponse = new ServiceResponse($authenticationSuccess);
 

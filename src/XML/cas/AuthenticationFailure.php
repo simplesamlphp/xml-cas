@@ -6,14 +6,12 @@ namespace SimpleSAML\CAS\XML\cas;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\CAS\Error;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingAttributeException;
-use SimpleSAML\XML\StringElementTrait;
-use ValueError;
+use SimpleSAML\CAS\Type\CodeValue;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
-use function is_string;
-use function trim;
+use function strval;
 
 /**
  * Class for CAS authenticationFailure
@@ -22,7 +20,10 @@ use function trim;
  */
 final class AuthenticationFailure extends AbstractResponse
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
     /** @var string */
     final public const LOCALNAME = 'authenticationFailure';
@@ -31,12 +32,12 @@ final class AuthenticationFailure extends AbstractResponse
     /**
      * Create a new instance of AuthenticationFailure
      *
-     * @param string $content
-     * @param \SimpleSAML\CAS\Error|string $code
+     * @param \SimpleSAML\XMLSchema\Type\Builtin\StringValue $content
+     * @param \SimpleSAML\CAS\Type\CodeValue $code
      */
     final public function __construct(
-        string $content,
-        protected Error|string $code,
+        StringValue $content,
+        protected CodeValue $code,
     ) {
         $this->setContent($content);
     }
@@ -45,24 +46,11 @@ final class AuthenticationFailure extends AbstractResponse
     /**
      * Collect the value of the code-property
      *
-     * @return \SimpleSAML\CAS\Error|string
+     * @return \SimpleSAML\CAS\Type\CodeValue
      */
-    public function getCode(): Error|string
+    public function getCode(): CodeValue
     {
         return $this->code;
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \Exception on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        Assert::notWhitespaceOnly($content);
     }
 
 
@@ -72,28 +60,20 @@ final class AuthenticationFailure extends AbstractResponse
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingAttributeException
+     * @throws \SimpleSAML\XMLSchema\Exception\MissingAttributeException
      *   if the supplied element is missing any of the mandatory attributes
      */
     public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
-        Assert::true(
-            $xml->hasAttribute('code'),
-            'Missing code from ' . static::getLocalName(),
-            MissingAttributeException::class,
+
+        return new static(
+            StringValue::fromString($xml->textContent),
+            self::getAttribute($xml, 'code', CodeValue::class),
         );
-
-        try {
-            $code = Error::from(self::getAttribute($xml, 'code'));
-        } catch (ValueError) {
-            $code = self::getAttribute($xml, 'code');
-        }
-
-        return new static(trim($xml->textContent), $code);
     }
 
 
@@ -106,10 +86,9 @@ final class AuthenticationFailure extends AbstractResponse
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
 
-        $code = $this->getCode();
-        $e->setAttribute('code', is_string($code) ? $code : $code->value);
+        $e->setAttribute('code', strval($this->getCode()));
+        $e->textContent = strval($this->getContent());
 
         return $e;
     }

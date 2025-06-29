@@ -6,12 +6,14 @@ namespace SimpleSAML\CAS\Test\XML\cas;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\CAS\Error as ERR;
+use SimpleSAML\CAS\Type\CodeValue;
 use SimpleSAML\CAS\XML\cas\AbstractCasElement;
 use SimpleSAML\CAS\XML\cas\AbstractResponse;
 use SimpleSAML\CAS\XML\cas\AuthenticationFailure;
+use SimpleSAML\CAS\XML\cas\ErrorEnum;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
 use function dirname;
 use function strval;
@@ -46,8 +48,8 @@ final class AuthenticationFailureTest extends TestCase
     public function testMarshalling(): void
     {
         $authenticationFailure = new AuthenticationFailure(
-            'Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized',
-            ERR::INVALID_TICKET,
+            StringValue::fromString('Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized'),
+            CodeValue::fromEnum(ErrorEnum::INVALID_TICKET),
         );
 
         $this->assertEquals(

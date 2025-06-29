@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Utils\XPath;
@@ -13,9 +12,9 @@ use SimpleSAML\CAS\XML\cas\Attributes;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
 use SimpleSAML\CAS\XML\cas\IsFromNewLogin;
 use SimpleSAML\CAS\XML\cas\LongTermAuthenticationRequestTokenUsed;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\{BooleanValue, DateTimeValue};
 
 use function dirname;
 use function strval;
@@ -32,8 +31,8 @@ final class AttributesTest extends TestCase
 {
     use SerializableElementTestTrait;
 
-    /** @var \DateTimeImmutable */
-    private static DateTimeImmutable $authenticationDate;
+    /** @var \SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue */
+    private static DateTimeValue $authenticationDate;
 
 
     /**
@@ -46,7 +45,7 @@ final class AttributesTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/cas_attributes.xml',
         );
 
-        self::$authenticationDate = new DateTimeImmutable('2015-11-12T09:30:10Z');
+        self::$authenticationDate = DateTimeValue::fromString('2015-11-12T09:30:10Z');
     }
 
 
@@ -55,12 +54,15 @@ final class AttributesTest extends TestCase
     public function testMarshalling(): void
     {
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
-        $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
-        $isFromNewLogin = new IsFromNewLogin('true');
+        $longTerm = new LongTermAuthenticationRequestTokenUsed(BooleanValue::fromString('true'));
+        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
         $document = DOMDocumentFactory::fromString(
             '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         );
-        $myAttribute = new Chunk($document->documentElement);
+
+        /** @var \DOMElement $elt */
+        $elt = $document->documentElement;
+        $myAttribute = new Chunk($elt);
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]);
 
         $this->assertEquals(
@@ -73,12 +75,15 @@ final class AttributesTest extends TestCase
     public function testMarshallingElementOrdering(): void
     {
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
-        $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
-        $isFromNewLogin = new IsFromNewLogin('true');
+        $longTerm = new LongTermAuthenticationRequestTokenUsed(BooleanValue::fromString('true'));
+        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
         $document = DOMDocumentFactory::fromString(
             '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         );
-        $myAttribute = new Chunk($document->documentElement);
+
+        /** @var \DOMElement $elt */
+        $elt = $document->documentElement;
+        $myAttribute = new Chunk($elt);
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]);
 
         $attributesElement = $attributes->toXML();

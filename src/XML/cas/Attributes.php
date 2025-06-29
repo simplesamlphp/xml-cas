@@ -7,12 +7,9 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
-
-use function array_pop;
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException};
+use SimpleSAML\XMLSchema\XML\xs\NamespaceEnum;
 
 /**
  * Class for CAS attributes
@@ -27,7 +24,7 @@ final class Attributes extends AbstractCasElement
     final public const LOCALNAME = 'attributes';
 
     /** The namespace-attribute for the xs:any element */
-    final public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+    final public const XS_ANY_ELT_NAMESPACE = NamespaceEnum::Any;
 
     /** The exclusions for the xs:any element */
     final public const XS_ANY_ELT_EXCLUSIONS = [
@@ -88,9 +85,9 @@ final class Attributes extends AbstractCasElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingAttributeException
+     * @throws \SimpleSAML\XMLSchema\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
     public static function fromXML(DOMElement $xml): static
@@ -123,9 +120,9 @@ final class Attributes extends AbstractCasElement
         );
 
         return new static(
-            array_pop($authenticationDate),
-            array_pop($longTermAuthenticationRequestTokenUsed),
-            array_pop($isFromNewLogin),
+            $authenticationDate[0],
+            $longTermAuthenticationRequestTokenUsed[0],
+            $isFromNewLogin[0],
             self::getChildElementsFromXML($xml),
         );
     }

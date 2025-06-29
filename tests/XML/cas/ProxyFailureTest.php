@@ -6,12 +6,14 @@ namespace SimpleSAML\CAS\Test\XML\cas;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\CAS\Error as ERR;
+use SimpleSAML\CAS\Type\CodeValue;
 use SimpleSAML\CAS\XML\cas\AbstractCasElement;
 use SimpleSAML\CAS\XML\cas\AbstractResponse;
+use SimpleSAML\CAS\XML\cas\ErrorEnum;
 use SimpleSAML\CAS\XML\cas\ProxyFailure;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
 use function dirname;
 use function strval;
@@ -45,7 +47,10 @@ final class ProxyFailureTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $proxyFailure = new ProxyFailure('some text', ERR::INVALID_REQUEST);
+        $proxyFailure = new ProxyFailure(
+            StringValue::fromString('some text'),
+            CodeValue::fromEnum(ErrorEnum::INVALID_REQUEST),
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

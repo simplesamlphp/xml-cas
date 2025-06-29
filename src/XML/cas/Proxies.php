@@ -7,8 +7,7 @@ namespace SimpleSAML\CAS\XML\cas;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\CAS\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException};
 
 /**
  * Class for CAS proxies
@@ -50,20 +49,21 @@ final class Proxies extends AbstractCasElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *  if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingElementException if one of the mandatory child-elements is missing
-     * @throws \SimpleSAML\XML\Exception\TooManyElementsException if too many child-elements of a type are specified
+     * @throws \SimpleSAML\XMLSchema\Exception\MissingElementException
+     *  if one of the mandatory child-elements is missing
+     * @throws \SimpleSAML\XMLSchema\Exception\TooManyElementsException
+     *  if too many child-elements of a type are specified
      */
     public static function fromXML(DOMElement $xml): static
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
-        $proxy = Proxy::getChildrenOfClass($xml);
-        Assert::minCount($proxy, 1, 'Missing at least one Proxy in Proxies.', MissingElementException::class);
-
-        return new static($proxy);
+        return new static(
+            Proxy::getChildrenOfClass($xml),
+        );
     }
 
 

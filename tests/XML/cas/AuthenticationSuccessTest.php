@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Utils\XPath;
@@ -19,9 +18,9 @@ use SimpleSAML\CAS\XML\cas\Proxies;
 use SimpleSAML\CAS\XML\cas\Proxy;
 use SimpleSAML\CAS\XML\cas\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\cas\User;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\{BooleanValue, DateTimeValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -39,8 +38,8 @@ final class AuthenticationSuccessTest extends TestCase
 {
     use SerializableElementTestTrait;
 
-    /** @var \DateTimeImmutable */
-    private static DateTimeImmutable $authenticationDate;
+    /** @var \SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue */
+    private static DateTimeValue $authenticationDate;
 
 
     /**
@@ -53,7 +52,7 @@ final class AuthenticationSuccessTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/cas_authenticationSuccess.xml',
         );
 
-        self::$authenticationDate = new DateTimeImmutable('2015-11-12T09:30:10Z');
+        self::$authenticationDate = DateTimeValue::fromString('2015-11-12T09:30:10Z');
     }
 
 
@@ -61,31 +60,35 @@ final class AuthenticationSuccessTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $firstNameDocument = DOMDocumentFactory::fromString(
+        /** @var \DOMElement $firstNameElt */
+        $firstNameElt = DOMDocumentFactory::fromString(
             '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>',
-        );
-        $firstName = new Chunk($firstNameDocument->documentElement);
+        )->documentElement;
 
-        $lastNameDocument = DOMDocumentFactory::fromString(
+        $firstName = new Chunk($firstNameElt);
+
+        /** @var \DOMElement $lastNameElt */
+        $lastNameElt = DOMDocumentFactory::fromString(
             '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>',
-        );
-        $lastName = new Chunk($lastNameDocument->documentElement);
+        )->documentElement;
+        $lastName = new Chunk($lastNameElt);
 
-        $emailDocument = DOMDocumentFactory::fromString(
+        /** @var \DOMElement $emailElt */
+        $emailElt = DOMDocumentFactory::fromString(
             '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>',
-        );
-        $email = new Chunk($emailDocument->documentElement);
+        )->documentElement;
+        $email = new Chunk($emailElt);
 
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
-        $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
-        $isFromNewLogin = new IsFromNewLogin('true');
+        $longTerm = new LongTermAuthenticationRequestTokenUsed(BooleanValue::fromString('true'));
+        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
 
-        $user = new User('username');
+        $user = new User(StringValue::fromString('username'));
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$firstName, $lastName, $email]);
-        $proxyGrantingTicket = new ProxyGrantingTicket('PGTIOU-84678-8a9d...');
+        $proxyGrantingTicket = new ProxyGrantingTicket(StringValue::fromString('PGTIOU-84678-8a9d...'));
         $proxies = new Proxies([
-            new Proxy('https://proxy2/pgtUrl'),
-            new Proxy('https://proxy1/pgtUrl'),
+            new Proxy(StringValue::fromString('https://proxy2/pgtUrl')),
+            new Proxy(StringValue::fromString('https://proxy1/pgtUrl')),
         ]);
 
         $authenticationSuccess = new AuthenticationSuccess($user, $attributes, $proxyGrantingTicket, $proxies);
@@ -99,31 +102,35 @@ final class AuthenticationSuccessTest extends TestCase
 
     public function testMarshallingElementOrdering(): void
     {
-        $firstNameDocument = DOMDocumentFactory::fromString(
+        /** @var \DOMElement $firstNameElt */
+        $firstNameElt = DOMDocumentFactory::fromString(
             '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>',
-        );
-        $firstName = new Chunk($firstNameDocument->documentElement);
+        )->documentElement;
 
-        $lastNameDocument = DOMDocumentFactory::fromString(
+        $firstName = new Chunk($firstNameElt);
+
+        /** @var \DOMElement $lastNameElt */
+        $lastNameElt = DOMDocumentFactory::fromString(
             '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>',
-        );
-        $lastName = new Chunk($lastNameDocument->documentElement);
+        )->documentElement;
+        $lastName = new Chunk($lastNameElt);
 
-        $emailDocument = DOMDocumentFactory::fromString(
+        /** @var \DOMElement $emailElt */
+        $emailElt = DOMDocumentFactory::fromString(
             '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>',
-        );
-        $email = new Chunk($emailDocument->documentElement);
+        )->documentElement;
+        $email = new Chunk($emailElt);
 
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
-        $longTerm = new LongTermAuthenticationRequestTokenUsed('true');
-        $isFromNewLogin = new IsFromNewLogin('true');
+        $longTerm = new LongTermAuthenticationRequestTokenUsed(BooleanValue::fromString('true'));
+        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
 
-        $user = new User('username');
+        $user = new User(StringValue::fromString('username'));
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$firstName, $lastName, $email]);
-        $proxyGrantingTicket = new ProxyGrantingTicket('PGTIOU-84678-8a9d...');
+        $proxyGrantingTicket = new ProxyGrantingTicket(StringValue::fromString('PGTIOU-84678-8a9d...'));
         $proxies = new Proxies([
-            new Proxy('https://proxy2/pgtUrl'),
-            new Proxy('https://proxy1/pgtUrl'),
+            new Proxy(StringValue::fromString('https://proxy2/pgtUrl')),
+            new Proxy(StringValue::fromString('https://proxy1/pgtUrl')),
         ]);
 
         $authenticationSuccess = new AuthenticationSuccess($user, $attributes, $proxyGrantingTicket, $proxies);

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML\cas;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\cas\AbstractCasElement;
 use SimpleSAML\CAS\XML\cas\AuthenticationDate;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue;
 
 use function dirname;
 use function strval;
@@ -26,8 +26,8 @@ final class AuthenticationDateTest extends TestCase
 {
     use SerializableElementTestTrait;
 
-    /** @var \DateTimeImmutable */
-    private static DateTimeImmutable $authenticationDate;
+    /** @var \SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue */
+    private static DateTimeValue $authenticationDate;
 
 
     /**
@@ -40,7 +40,7 @@ final class AuthenticationDateTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/cas_authenticationDate.xml',
         );
 
-        self::$authenticationDate = new DateTimeImmutable('2015-11-12T09:30:10Z');
+        self::$authenticationDate = DateTimeValue::fromString('2015-11-12T09:30:10Z');
     }
 
 

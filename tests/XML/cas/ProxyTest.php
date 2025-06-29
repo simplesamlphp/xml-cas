@@ -10,6 +10,7 @@ use SimpleSAML\CAS\XML\cas\AbstractCasElement;
 use SimpleSAML\CAS\XML\cas\Proxy;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\Builtin\StringValue;
 
 use function dirname;
 use function strval;
@@ -41,7 +42,7 @@ final class ProxyTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $proxy = new Proxy('https://example.org/proxy');
+        $proxy = new Proxy(StringValue::fromString('https://example.org/proxy'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

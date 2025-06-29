@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\XML\cas;
 
-use DateTimeImmutable;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\CAS\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue;
+
+use function strval;
 
 /**
  * Class for CAS authenticationDate
@@ -22,10 +23,10 @@ final class AuthenticationDate extends AbstractCasElement
 
 
     /**
-     * @param \DateTimeImmutable $timestamp
+     * @param \SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue $timestamp
      */
     final public function __construct(
-        protected DateTimeImmutable $timestamp,
+        protected DateTimeValue $timestamp,
     ) {
     }
 
@@ -33,9 +34,9 @@ final class AuthenticationDate extends AbstractCasElement
     /**
      * Retrieve the issue timestamp of this message.
      *
-     * @return \DateTimeImmutable The issue timestamp of this message, as an UNIX timestamp
+     * @return \SimpleSAML\XMLSchema\Type\Builtin\DateTimeValue The issue timestamp of this message
      */
-    public function getTimestamp(): DateTimeImmutable
+    public function getTimestamp(): DateTimeValue
     {
         return $this->timestamp;
     }
@@ -48,10 +49,10 @@ final class AuthenticationDate extends AbstractCasElement
      */
     public function toXML(?DOMElement $parent = null): DOMElement
     {
-        $root = $this->instantiateParentElement($parent);
-        $root->textContent = $this->getTimestamp()->format(C::DATETIME_FORMAT);
+        $e = $this->instantiateParentElement($parent);
+        $e->textContent = strval($this->getTimestamp());
 
-        return $root;
+        return $e;
     }
 
 
@@ -61,7 +62,7 @@ final class AuthenticationDate extends AbstractCasElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -69,6 +70,6 @@ final class AuthenticationDate extends AbstractCasElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
 
-        return new static(new DateTimeImmutable($xml->textContent));
+        return new static(DateTimeValue::fromString($xml->textContent));
     }
 }

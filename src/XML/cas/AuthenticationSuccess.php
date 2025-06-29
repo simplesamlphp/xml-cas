@@ -6,8 +6,7 @@ namespace SimpleSAML\CAS\XML\cas;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException};
 
 use function array_pop;
 
@@ -81,9 +80,9 @@ final class AuthenticationSuccess extends AbstractResponse
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingAttributeException
+     * @throws \SimpleSAML\XMLSchema\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
     public static function fromXML(DOMElement $xml): static
@@ -111,8 +110,8 @@ final class AuthenticationSuccess extends AbstractResponse
         $proxies = Proxies::getChildrenOfClass($xml);
 
         return new static(
-            array_pop($user),
-            array_pop($attributes),
+            $user[0],
+            $attributes[0],
             array_pop($proxyGrantingTicket),
             array_pop($proxies),
         );
