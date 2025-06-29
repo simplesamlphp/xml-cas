@@ -14,7 +14,7 @@
         "ext-dom": "*",
 
         "simplesamlphp/assert": "~1.8.1",
-        "simplesamlphp/xml-common": "~2.0.3"
+        "simplesamlphp/xml-common": "~2.0.2"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "~1.9.2"
