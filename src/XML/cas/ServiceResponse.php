@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\CAS\XML\cas;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\CAS\Assert\Assert;
 use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
 
