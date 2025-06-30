@@ -14,19 +14,19 @@
         "ext-dom": "*",
 
         "simplesamlphp/assert": "~1.8.1",
-        "simplesamlphp/xml-common": "~2.0.2"
+        "simplesamlphp/xml-common": "~2.0.0"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "~1.9.2"
     },
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\CAS\\": "src/"
+            "SimpleSAML\\CAS\\": "src/CAS/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\CAS\\": "tests/"
+            "SimpleSAML\\Test\\CAS\\": "tests/CAS/"
         }
     },
     "extra": {
