@@ -13,11 +13,11 @@
         "php": "^8.1",
         "ext-dom": "*",
 
-        "simplesamlphp/assert": "~1.8.1",
-        "simplesamlphp/xml-common": "~2.0.0"
+        "simplesamlphp/assert": "~1.8.2",
+        "simplesamlphp/xml-common": "~2.0.1"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "~1.9.2"
+        "simplesamlphp/simplesamlphp-test-framework": "~1.9.3"
     },
     "autoload": {
         "psr-4": {
