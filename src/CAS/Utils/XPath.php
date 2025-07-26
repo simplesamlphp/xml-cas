@@ -13,7 +13,7 @@ use SimpleSAML\CAS\Constants as C;
  *
  * @package simplesamlphp/cas
  */
-class XPath extends \SimpleSAML\XML\Utils\XPath
+class XPath extends \SimpleSAML\XPath\XPath
 {
     /**
      * Get a DOMXPath object that can be used to search for CAS elements.
