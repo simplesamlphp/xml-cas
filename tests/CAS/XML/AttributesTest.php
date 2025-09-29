@@ -12,9 +12,11 @@ use SimpleSAML\CAS\XML\Attributes;
 use SimpleSAML\CAS\XML\AuthenticationDate;
 use SimpleSAML\CAS\XML\IsFromNewLogin;
 use SimpleSAML\CAS\XML\LongTermAuthenticationRequestTokenUsed;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\{BooleanValue, DateTimeValue};
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\DateTimeValue;
 
 use function dirname;
 use function strval;
@@ -30,6 +32,7 @@ use function strval;
 final class AttributesTest extends TestCase
 {
     use SerializableElementTestTrait;
+
 
     /** @var \SimpleSAML\XMLSchema\Type\DateTimeValue */
     private static DateTimeValue $authenticationDate;

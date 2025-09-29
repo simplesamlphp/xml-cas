@@ -16,6 +16,7 @@ final class IsFromNewLogin extends AbstractCasElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = BooleanValue::class;
 

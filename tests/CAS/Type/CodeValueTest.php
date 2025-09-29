@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\CAS\Type;
 
-use PHPUnit\Framework\Attributes\{CoversClass, DataProvider, DataProviderExternal};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Type\CodeValue;
 use SimpleSAML\CAS\XML\Enumeration\ErrorEnum;

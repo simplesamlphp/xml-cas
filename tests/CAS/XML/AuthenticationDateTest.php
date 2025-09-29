@@ -26,6 +26,7 @@ final class AuthenticationDateTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /** @var \SimpleSAML\XMLSchema\Type\DateTimeValue */
     private static DateTimeValue $authenticationDate;
 

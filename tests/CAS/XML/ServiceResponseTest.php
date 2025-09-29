@@ -15,9 +15,13 @@ use SimpleSAML\CAS\XML\LongTermAuthenticationRequestTokenUsed;
 use SimpleSAML\CAS\XML\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\ServiceResponse;
 use SimpleSAML\CAS\XML\User;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XMLSchema\Type\{BooleanValue, DateTimeValue, StringValue};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\DateTimeValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -33,6 +37,7 @@ final class ServiceResponseTest extends TestCase
 {
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
+
 
     /** @var \SimpleSAML\XMLSchema\Type\DateTimeValue */
     private static DateTimeValue $authenticationDate;

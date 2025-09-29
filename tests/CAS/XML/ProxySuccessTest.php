@@ -29,6 +29,7 @@ final class ProxySuccessTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /**
      */
     public static function setUpBeforeClass(): void

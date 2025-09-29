@@ -18,9 +18,12 @@ use SimpleSAML\CAS\XML\Proxies;
 use SimpleSAML\CAS\XML\Proxy;
 use SimpleSAML\CAS\XML\ProxyGrantingTicket;
 use SimpleSAML\CAS\XML\User;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\{BooleanValue, DateTimeValue, StringValue};
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\DateTimeValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -37,6 +40,7 @@ use function strval;
 final class AuthenticationSuccessTest extends TestCase
 {
     use SerializableElementTestTrait;
+
 
     /** @var \SimpleSAML\XMLSchema\Type\DateTimeValue */
     private static DateTimeValue $authenticationDate;

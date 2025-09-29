@@ -22,6 +22,7 @@ final class AuthenticationFailure extends AbstractResponse
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = StringValue::class;
 

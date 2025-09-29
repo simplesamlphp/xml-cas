@@ -6,7 +6,8 @@ namespace SimpleSAML\CAS\XML;
 
 use DOMElement;
 use SimpleSAML\CAS\Assert\Assert;
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException};
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
 
 use function array_pop;
 

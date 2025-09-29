@@ -16,6 +16,7 @@ final class User extends AbstractCasElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = StringValue::class;
 

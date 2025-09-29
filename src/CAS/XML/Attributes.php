@@ -8,7 +8,8 @@ use DOMElement;
 use SimpleSAML\CAS\Assert\Assert;
 use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XMLSchema\Exception\{InvalidDOMElementException, MissingElementException};
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
 
 /**
@@ -19,6 +20,7 @@ use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
 final class Attributes extends AbstractCasElement
 {
     use ExtendableElementTrait;
+
 
     /** @var string */
     final public const LOCALNAME = 'attributes';
