@@ -10,7 +10,7 @@ use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
-use SimpleSAML\XMLSchema\XML\Enumeration\NamespaceEnum;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class for CAS attributes
@@ -26,7 +26,7 @@ final class Attributes extends AbstractCasElement
     final public const LOCALNAME = 'attributes';
 
     /** The namespace-attribute for the xs:any element */
-    final public const XS_ANY_ELT_NAMESPACE = NamespaceEnum::Any;
+    final public const XS_ANY_ELT_NAMESPACE = NS::ANY;
 
     /** The exclusions for the xs:any element */
     final public const XS_ANY_ELT_EXCLUSIONS = [
