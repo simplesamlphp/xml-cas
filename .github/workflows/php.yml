@@ -151,7 +151,9 @@ jobs:
 
   security:
     name: Security checks
+    needs: [unit-tests-linux]
     runs-on: [ubuntu-latest]
+
     steps:
       - name: Setup PHP, with composer and extensions
         # https://github.com/shivammathur/setup-php
@@ -192,6 +194,7 @@ jobs:
 
   quality:
     name: Quality control
+    needs: [unit-tests-linux]
     runs-on: [ubuntu-latest]
 
     steps:
@@ -247,6 +250,7 @@ jobs:
     name: Code coverage
     runs-on: [ubuntu-latest]
     needs: [unit-tests-linux]
+
     steps:
       - uses: actions/checkout@v5
 
