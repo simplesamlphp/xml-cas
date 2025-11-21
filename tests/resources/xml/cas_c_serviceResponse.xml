@@ -1,0 +1,19 @@
+<c:serviceResponse xmlns:c="http://www.yale.edu/tp/cas" xmlns:slate="https://example.org/slate">
+    <c:authenticationSuccess>
+        <c:user>jdoe</c:user>
+        <c:attributes>
+            <c:authenticationDate>2025-11-07T22:00:24+02:00</c:authenticationDate>
+            <c:longTermAuthenticationRequestTokenUsed>true</c:longTermAuthenticationRequestTokenUsed>
+            <c:isFromNewLogin>true</c:isFromNewLogin>
+            <c:sn>Doe</c:sn>
+            <c:firstname>John</c:firstname>
+            <c:mail>jdoe@example.edu</c:mail>
+            <c:eduPersonPrincipalName>jdoe@example.edu</c:eduPersonPrincipalName>
+
+            <!-- vendor-specific attributes permitted by xs:any -->
+            <slate:person>12345</slate:person>
+            <slate:round>Fall-2025</slate:round>
+            <slate:ref>ABC-123</slate:ref>
+        </c:attributes>
+    </c:authenticationSuccess>
+</c:serviceResponse>
