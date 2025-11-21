@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cas:serviceResponse xmlns:cas="http://www.yale.edu/tp/cas" xmlns:slate="https://example.org/slate" xmlns:foo="https://example.org/foo">
+    <cas:authenticationSuccess>
+        <cas:user>alice</cas:user>
+        <cas:attributes>
+            <slate:role>student</slate:role>
+            <slate:role>assistant</slate:role>
+            <foo:level>advanced</foo:level>
+        </cas:attributes>
+    </cas:authenticationSuccess>
+</cas:serviceResponse>

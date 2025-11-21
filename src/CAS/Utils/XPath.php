@@ -28,6 +28,11 @@ class XPath extends \SimpleSAML\XPath\XPath
     {
         $xp = parent::getXPath($node, $autoregister);
 
+        /*
+         * - Registering 'cas' to the same URI again is fine.
+         * - If someone previously bound 'cas' to a different URI on the same DOMXPath,
+         *   your call will change its meaning for subsequent queries
+         * */
         $xp->registerNamespace('cas', C::NS_CAS);
 
         return $xp;

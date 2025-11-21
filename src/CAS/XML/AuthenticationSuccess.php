@@ -23,6 +23,13 @@ final class AuthenticationSuccess extends AbstractResponse
 
 
     /**
+     * Non-CAS child elements directly under <cas:authenticationSuccess> to preserve round-trip.
+     * @var array<\DOMElement>
+     */
+    protected array $authenticationSuccessMetadata = [];
+
+
+    /**
      * Initialize a cas:authenticationSuccess element
      *
      * @param \SimpleSAML\CAS\XML\User $user
@@ -54,6 +61,16 @@ final class AuthenticationSuccess extends AbstractResponse
     public function getAttributes(): Attributes
     {
         return $this->attributes;
+    }
+
+
+    /**
+     * Get Non-CAS child elements directly under <cas:authenticationSuccess> to preserve round-trip.
+     * @return array<\DOMElement>
+     */
+    public function getAuthenticationSuccessMetadata(): array
+    {
+        return $this->authenticationSuccessMetadata;
     }
 
 
@@ -110,12 +127,52 @@ final class AuthenticationSuccess extends AbstractResponse
         $proxyGrantingTicket = ProxyGrantingTicket::getChildrenOfClass($xml);
         $proxies = Proxies::getChildrenOfClass($xml);
 
-        return new static(
+        $obj = new static(
             $user[0],
             $attributes[0],
             array_pop($proxyGrantingTicket),
             array_pop($proxies),
         );
+
+        /*
+         * Technolutions Slate’s SAMLValidate may emit vendor elements (e.g., slate:person, slate:round) directly under
+         * cas:authenticationSuccess, not only inside cas:attributes. To interoperate without loosening CAS strictness,
+         * we preserve and round‑trip only non‑CAS, namespaced children at that level and ignore unknown CAS‑namespace
+         * elements.
+         * This keeps vendor metadata intact for consumers (XPath, downstream mapping) while avoiding acceptance of
+         * schema‑unknown CAS elements.
+         */
+        $metadata = [];
+        foreach ($xml->childNodes as $child) {
+            if (!$child instanceof DOMElement) {
+                continue;
+            }
+
+            // Skip all known CAS elements in the CAS namespace
+            if ($child->namespaceURI === static::getNamespaceURI()) {
+                // Known, schema-defined children
+                if (
+                    $child->localName === 'user' ||
+                    $child->localName === 'attributes' ||
+                    $child->localName === 'proxyGrantingTicket' ||
+                    $child->localName === 'proxies'
+                ) {
+                    continue;
+                }
+                // Unknown elements in the CAS namespace are ignored to preserve strictness
+                continue;
+            }
+
+            // Only keep vendor elements with a non-null namespace (exclude local/no-namespace)
+            if ($child->namespaceURI === null) {
+                continue;
+            }
+
+            $metadata[] = $child;
+        }
+        $obj->authenticationSuccessMetadata = $metadata;
+
+        return $obj;
     }
 
 
@@ -133,6 +190,14 @@ final class AuthenticationSuccess extends AbstractResponse
         $this->getAttributes()->toXML($e);
         $this->getProxyGrantingTicket()?->toXML($e);
         $this->getProxies()?->toXML($e);
+
+        // Re-emit preserved non-CAS children (e.g., slate:* at top-level)
+        foreach ($this->authenticationSuccessMetadata as $child) {
+            $imported = $e->ownerDocument?->importNode($child, true);
+            if ($imported !== null) {
+                $e->appendChild($imported);
+            }
+        }
 
         return $e;
     }
