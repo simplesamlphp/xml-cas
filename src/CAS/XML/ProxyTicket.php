@@ -10,7 +10,7 @@ use SimpleSAML\XMLSchema\Type\StringValue;
 /**
  * Class for CAS proxyTicket
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class ProxyTicket extends AbstractCasElement
 {

@@ -15,7 +15,7 @@ use SimpleSAML\XMLSchema\XML\Constants\NS;
 /**
  * Class for CAS attributes
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class Attributes extends AbstractCasElement
 {

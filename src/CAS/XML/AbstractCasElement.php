@@ -10,7 +10,7 @@ use SimpleSAML\XML\AbstractElement;
 /**
  * Abstract class to be implemented by all the classes in this namespace
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 abstract class AbstractCasElement extends AbstractElement
 {

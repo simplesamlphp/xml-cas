@@ -14,7 +14,7 @@ use function strval;
 /**
  * Class for CAS authenticationDate
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class AuthenticationDate extends AbstractCasElement
 {

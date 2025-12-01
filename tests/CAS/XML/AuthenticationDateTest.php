@@ -18,7 +18,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\AuthenticationDateTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(AuthenticationDate::class)]
 #[CoversClass(AbstractCasElement::class)]

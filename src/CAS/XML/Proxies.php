@@ -13,7 +13,7 @@ use SimpleSAML\XMLSchema\Exception\MissingElementException;
 /**
  * Class for CAS proxies
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class Proxies extends AbstractCasElement
 {

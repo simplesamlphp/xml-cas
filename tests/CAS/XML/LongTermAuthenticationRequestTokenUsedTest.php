@@ -18,7 +18,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\LongTermAuthenticationRequestTokenUsedTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(LongTermAuthenticationRequestTokenUsed::class)]
 #[CoversClass(AbstractCasElement::class)]

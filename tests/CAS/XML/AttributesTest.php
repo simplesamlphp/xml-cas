@@ -24,7 +24,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\AttributesTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(XPath::class)]
 #[CoversClass(Attributes::class)]

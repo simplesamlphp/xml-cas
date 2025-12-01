@@ -13,7 +13,7 @@ use SimpleSAML\XML\DOMDocumentFactory;
 /**
  * Class \SimpleSAML\CAS\Utils\XPath
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(XPath::class)]
 final class XPathTest extends TestCase

@@ -18,7 +18,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\ProxyTicketTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(ProxyTicket::class)]
 #[CoversClass(AbstractCasElement::class)]

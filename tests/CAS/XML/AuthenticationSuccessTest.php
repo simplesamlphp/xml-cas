@@ -31,7 +31,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\AuthenticationSuccessTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(XPath::class)]
 #[CoversClass(AuthenticationSuccess::class)]

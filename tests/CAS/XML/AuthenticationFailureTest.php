@@ -21,7 +21,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\AuthenticationFailureTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(AuthenticationFailure::class)]
 #[CoversClass(AbstractResponse::class)]

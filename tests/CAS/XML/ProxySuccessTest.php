@@ -20,7 +20,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\ProxySuccessTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(ProxySuccess::class)]
 #[CoversClass(AbstractResponse::class)]

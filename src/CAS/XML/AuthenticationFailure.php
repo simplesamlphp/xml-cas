@@ -16,7 +16,7 @@ use function strval;
 /**
  * Class for CAS authenticationFailure
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class AuthenticationFailure extends AbstractResponse
 {

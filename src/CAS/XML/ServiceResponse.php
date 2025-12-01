@@ -17,7 +17,7 @@ use function array_merge;
 /**
  * Class for CAS serviceResponse
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class ServiceResponse extends AbstractCasElement implements SchemaValidatableElementInterface
 {

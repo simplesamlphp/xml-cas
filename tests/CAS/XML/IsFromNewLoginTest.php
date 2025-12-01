@@ -18,7 +18,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\IsFromNewLoginTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(IsFromNewLogin::class)]
 #[CoversClass(AbstractCasElement::class)]

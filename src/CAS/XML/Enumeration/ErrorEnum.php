@@ -6,6 +6,8 @@ namespace SimpleSAML\CAS\XML\Enumeration;
 
 /**
  * The error codes defined by the CAS protocol specification
+ *
+ * @package simplesamlphp/xml-cas
  */
 enum ErrorEnum: string
 {

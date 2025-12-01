@@ -34,7 +34,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\ServiceResponseTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(ServiceResponse::class)]
 #[CoversClass(AbstractCasElement::class)]

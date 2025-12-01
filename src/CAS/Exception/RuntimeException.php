@@ -8,6 +8,8 @@ use RuntimeException as BuiltinRuntimeException;
 
 /**
  * Named exception
+ *
+ * @package simplesamlphp/xml-cas
  */
 class RuntimeException extends BuiltinRuntimeException
 {

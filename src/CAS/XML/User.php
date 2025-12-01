@@ -10,7 +10,7 @@ use SimpleSAML\XMLSchema\Type\StringValue;
 /**
  * Class for CAS user
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class User extends AbstractCasElement
 {

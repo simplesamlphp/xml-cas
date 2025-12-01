@@ -10,7 +10,7 @@ use SimpleSAML\XML\SerializableElementInterface;
 /**
  * Abstract class to be implemented by all the responses in this namespace
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 abstract class AbstractResponse extends AbstractCasElement implements
     ElementInterface,

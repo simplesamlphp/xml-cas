@@ -21,7 +21,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\ProxyFailureTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(ProxyFailure::class)]
 #[CoversClass(AbstractResponse::class)]

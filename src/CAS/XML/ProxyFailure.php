@@ -16,7 +16,7 @@ use function strval;
 /**
  * Class for CAS proxyFailure
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class ProxyFailure extends AbstractResponse
 {

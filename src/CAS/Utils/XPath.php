@@ -11,7 +11,7 @@ use SimpleSAML\CAS\Constants as C;
 /**
  * Compilation of utilities for XPath.
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 class XPath extends \SimpleSAML\XPath\XPath
 {

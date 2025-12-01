@@ -10,7 +10,7 @@ use SimpleSAML\XMLSchema\Type\BooleanValue;
 /**
  * Class for CAS isFromNewLogin
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 final class IsFromNewLogin extends AbstractCasElement
 {

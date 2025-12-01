@@ -19,7 +19,7 @@ use function strval;
 /**
  * Class \SimpleSAML\CAS\XML\ProxiesTest
  *
- * @package simplesamlphp/cas
+ * @package simplesamlphp/xml-cas
  */
 #[CoversClass(Proxies::class)]
 #[CoversClass(AbstractCasElement::class)]
