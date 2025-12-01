@@ -66,7 +66,16 @@ final class AttributesTest extends TestCase
         /** @var \DOMElement $elt */
         $elt = $document->documentElement;
         $myAttribute = new Chunk($elt);
-        $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]);
+
+        $document = DOMDocumentFactory::fromString(
+            '<ssp:myOtherAttribute xmlns:ssp="urn:x-simplesamlphp:namespace">myOtherValue</ssp:myOtherAttribute>',
+        );
+
+        /** @var \DOMElement $elt */
+        $elt = $document->documentElement;
+        $myOtherAttribute = new Chunk($elt);
+
+        $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute, $myOtherAttribute]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

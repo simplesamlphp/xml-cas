@@ -144,7 +144,6 @@ final class Attributes extends AbstractCasElement
         $this->getLongTermAuthenticationRequestTokenUsed()->toXML($e);
         $this->getIsFromNewLogin()->toXML($e);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
         foreach ($this->elements as $elt) {
             if (!$elt->isEmptyElement()) {
                 $elt->toXML($e);
