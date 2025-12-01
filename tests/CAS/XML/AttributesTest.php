@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\CAS\Test\XML;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Utils\XPath;
 use SimpleSAML\CAS\XML\AbstractCasElement;
@@ -15,6 +16,7 @@ use SimpleSAML\CAS\XML\LongTermAuthenticationRequestTokenUsed;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Type\BooleanValue;
 use SimpleSAML\XMLSchema\Type\DateTimeValue;
 
@@ -107,5 +109,85 @@ final class AttributesTest extends TestCase
         $this->assertGreaterThanOrEqual(2, count($attributesElements));
         $this->assertEquals('cas:longTermAuthenticationRequestTokenUsed', $attributesElements[0]->tagName);
         $this->assertEquals('cas:isFromNewLogin', $attributesElements[1]->tagName);
+    }
+
+
+    /**
+     * @return array<string, array{0:string,1:bool,2:bool}>
+     */
+    public static function slateResponseStrictnessProvider(): array
+    {
+        return [
+            'lenient parsing (strict=false) succeeds for Slate response' => [
+                'lenient',
+                false,
+                true,
+            ],
+            'strict parsing (strict=true) fails for Slate response' => [
+                'strict',
+                true,
+                false,
+            ],
+        ];
+    }
+
+
+    /**
+     * Ensure that parsing of the Slate CAS <cas:attributes> element via Attributes::fromXML
+     * succeeds when strict parsing is disabled and fails when strict parsing is enabled.
+     *
+     * In the Slate example, <cas:attributes> only contains firstname/lastname/email and
+     * is missing the CAS‑required:
+     *   - cas:authenticationDate
+     *   - cas:longTermAuthenticationRequestTokenUsed
+     *   - cas:isFromNewLogin
+     *
+     * With strict=false => these are optional and parsing must succeed.
+     * With strict=true  => they are required and parsing must fail.
+     *
+     * @param string $description   Human-readable variant description
+     * @param bool   $strictParsing Whether to enable strict parsing
+     * @param bool   $shouldSucceed Whether parsing is expected to succeed
+     */
+    #[DataProvider('slateResponseStrictnessProvider')]
+    public function testSlateAttributesParsingStrictness(
+        string $description,
+        bool $strictParsing,
+        bool $shouldSucceed,
+    ): void {
+        $doc = DOMDocumentFactory::fromFile(
+            dirname(__FILE__, 3) . '/resources/xml/cas-slate-success-response.xml',
+        );
+        $root = $doc->documentElement;
+        $this->assertInstanceOf(\DOMElement::class, $root, 'Loaded Slate XML does not have a document element');
+
+        /** @var \DOMElement|null $attributesEl */
+        $attributesEl = $doc->getElementsByTagNameNS('http://www.yale.edu/tp/cas', 'attributes')->item(0);
+        $this->assertInstanceOf(\DOMElement::class, $attributesEl, 'Slate XML must contain a cas:attributes element');
+
+        if (!$shouldSucceed) {
+            $this->expectException(MissingElementException::class);
+            $this->expectExceptionMessageMatches(
+                '/authenticationDate|longTermAuthenticationRequestTokenUsed|isFromNewLogin/i',
+            );
+        }
+
+        $attributes = Attributes::fromXML($attributesEl, $strictParsing);
+
+        if ($shouldSucceed) {
+            // In lenient mode, we accept missing CAS attributes; they should be null.
+            $this->assertNull(
+                $attributes->getAuthenticationDate(),
+                sprintf('Expected null authenticationDate for "%s" case', $description),
+            );
+            $this->assertNull(
+                $attributes->getLongTermAuthenticationRequestTokenUsed(),
+                sprintf('Expected null longTermAuthenticationRequestTokenUsed for "%s" case', $description),
+            );
+            $this->assertNull(
+                $attributes->getIsFromNewLogin(),
+                sprintf('Expected null isFromNewLogin for "%s" case', $description),
+            );
+        }
     }
 }
