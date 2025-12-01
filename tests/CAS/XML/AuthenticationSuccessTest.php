@@ -233,6 +233,12 @@ final class AuthenticationSuccessTest extends TestCase
         /** @var \DOMElement $el */
         foreach ($metadata as $el) {
             $this->assertSame('http://technolutions.com/slate', $el->namespaceURI);
+
+            if ($el->localName === null) {
+                // Skip elements without a local name; they cannot be used as array keys
+                continue;
+            }
+
             $seen[$el->localName] = trim($el->textContent ?? '');
         }
 
