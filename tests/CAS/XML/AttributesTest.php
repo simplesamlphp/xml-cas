@@ -75,7 +75,12 @@ final class AttributesTest extends TestCase
         $elt = $document->documentElement;
         $myOtherAttribute = new Chunk($elt);
 
-        $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute, $myOtherAttribute]);
+        $attributes = new Attributes(
+            $authenticationDate,
+            $longTerm,
+            $isFromNewLogin,
+            [$myAttribute, $myOtherAttribute],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

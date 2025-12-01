@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Test\XML;
 
-use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\CAS\Constants as C;
-use SimpleSAML\CAS\Utils\XPath;
 use SimpleSAML\CAS\XML\AbstractCasElement;
 use SimpleSAML\CAS\XML\Attributes;
 use SimpleSAML\CAS\XML\AuthenticationDate;
@@ -28,7 +24,6 @@ use SimpleSAML\XMLSchema\Type\DateTimeValue;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
-use function str_starts_with;
 use function strval;
 
 /**
