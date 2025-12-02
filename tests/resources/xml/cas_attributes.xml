@@ -1,6 +1,7 @@
-<cas:attributes xmlns:cas="http://www.yale.edu/tp/cas">
+<cas:attributes xmlns:cas="http://www.yale.edu/tp/cas" xmlns:ssp="urn:x-simplesamlphp:namespace">
   <cas:authenticationDate>2015-11-12T09:30:10Z</cas:authenticationDate>
   <cas:longTermAuthenticationRequestTokenUsed>true</cas:longTermAuthenticationRequestTokenUsed>
   <cas:isFromNewLogin>true</cas:isFromNewLogin>
   <cas:myAttribute>myValue</cas:myAttribute>
+  <ssp:myOtherAttribute>myOtherValue</ssp:myOtherAttribute>
 </cas:attributes>
