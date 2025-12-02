@@ -21,13 +21,13 @@ abstract class AbstractAuthenticationSuccess extends AbstractResponse
      * Initialize a cas:authenticationSuccess element
      *
      * @param \SimpleSAML\CAS\XML\User $user
-     * @param \SimpleSAML\CAS\XML\Attributes $attributes
+     * @param \SimpleSAML\CAS\XML\AbstractAttributes $attributes
      * @param \SimpleSAML\CAS\XML\ProxyGrantingTicket|null $proxyGrantingTicket
      * @param \SimpleSAML\CAS\XML\Proxies|null $proxies
      */
     public function __construct(
         protected User $user,
-        protected Attributes $attributes,
+        protected AbstractAttributes $attributes,
         protected ?ProxyGrantingTicket $proxyGrantingTicket = null,
         protected ?Proxies $proxies = null,
     ) {
@@ -44,9 +44,9 @@ abstract class AbstractAuthenticationSuccess extends AbstractResponse
 
 
     /**
-     * @return \SimpleSAML\CAS\XML\Attributes
+     * @return \SimpleSAML\CAS\XML\AbstractAttributes
      */
-    public function getAttributes(): Attributes
+    public function getAttributes(): AbstractAttributes
     {
         return $this->attributes;
     }
