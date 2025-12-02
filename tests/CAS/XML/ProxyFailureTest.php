@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Type\CodeValue;
 use SimpleSAML\CAS\XML\AbstractCasElement;
+use SimpleSAML\CAS\XML\AbstractProxyFailure;
 use SimpleSAML\CAS\XML\AbstractResponse;
 use SimpleSAML\CAS\XML\Enumeration\ErrorEnum;
 use SimpleSAML\CAS\XML\ProxyFailure;
@@ -24,6 +25,7 @@ use function strval;
  * @package simplesamlphp/xml-cas
  */
 #[CoversClass(ProxyFailure::class)]
+#[CoversClass(AbstractProxyFailure::class)]
 #[CoversClass(AbstractResponse::class)]
 #[CoversClass(AbstractCasElement::class)]
 final class ProxyFailureTest extends TestCase
