@@ -41,7 +41,7 @@ abstract class AbstractAttributes extends AbstractCasElement
      * @param \SimpleSAML\CAS\XML\IsFromNewLogin $isFromNewLogin
      * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      */
-    final public function __construct(
+    public function __construct(
         protected AuthenticationDate $authenticationDate,
         protected LongTermAuthenticationRequestTokenUsed $longTermAuthenticationRequestTokenUsed,
         protected IsFromNewLogin $isFromNewLogin,
