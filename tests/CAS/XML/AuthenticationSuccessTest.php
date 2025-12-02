@@ -7,6 +7,7 @@ namespace SimpleSAML\CAS\Test\XML;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\Utils\XPath;
+use SimpleSAML\CAS\XML\AbstractAuthenticationSuccess;
 use SimpleSAML\CAS\XML\AbstractCasElement;
 use SimpleSAML\CAS\XML\AbstractResponse;
 use SimpleSAML\CAS\XML\Attributes;
@@ -36,6 +37,7 @@ use function strval;
 #[CoversClass(XPath::class)]
 #[CoversClass(AuthenticationSuccess::class)]
 #[CoversClass(AbstractResponse::class)]
+#[CoversClass(AbstractAuthenticationSuccess::class)]
 #[CoversClass(AbstractCasElement::class)]
 final class AuthenticationSuccessTest extends TestCase
 {
