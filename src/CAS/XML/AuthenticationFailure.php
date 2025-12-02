@@ -7,54 +7,16 @@ namespace SimpleSAML\CAS\XML;
 use DOMElement;
 use SimpleSAML\CAS\Assert\Assert;
 use SimpleSAML\CAS\Type\CodeValue;
-use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Type\StringValue;
-
-use function strval;
 
 /**
  * Class for CAS authenticationFailure
  *
  * @package simplesamlphp/xml-cas
  */
-final class AuthenticationFailure extends AbstractResponse
+final class AuthenticationFailure extends AbstractAuthenticationFailure
 {
-    use TypedTextContentTrait;
-
-
-    /** @var string */
-    public const TEXTCONTENT_TYPE = StringValue::class;
-
-    /** @var string */
-    final public const LOCALNAME = 'authenticationFailure';
-
-
-    /**
-     * Create a new instance of AuthenticationFailure
-     *
-     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
-     * @param \SimpleSAML\CAS\Type\CodeValue $code
-     */
-    final public function __construct(
-        StringValue $content,
-        protected CodeValue $code,
-    ) {
-        $this->setContent($content);
-    }
-
-
-    /**
-     * Collect the value of the code-property
-     *
-     * @return \SimpleSAML\CAS\Type\CodeValue
-     */
-    public function getCode(): CodeValue
-    {
-        return $this->code;
-    }
-
-
     /**
      * Initialize an AuthenticationFailure element.
      *
@@ -75,22 +37,5 @@ final class AuthenticationFailure extends AbstractResponse
             StringValue::fromString($xml->textContent),
             self::getAttribute($xml, 'code', CodeValue::class),
         );
-    }
-
-
-    /**
-     * Convert this AuthenticationFailure to XML.
-     *
-     * @param \DOMElement|null $parent The element we should append to.
-     * @return \DOMElement This AuthenticatioFailure-element.
-     */
-    public function toXML(?DOMElement $parent = null): DOMElement
-    {
-        $e = $this->instantiateParentElement($parent);
-
-        $e->setAttribute('code', strval($this->getCode()));
-        $e->textContent = strval($this->getContent());
-
-        return $e;
     }
 }
