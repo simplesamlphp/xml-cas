@@ -7,6 +7,7 @@ namespace SimpleSAML\CAS\Test\XML;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\AbstractCasElement;
+use SimpleSAML\CAS\XML\AbstractServiceResponse;
 use SimpleSAML\CAS\XML\Attributes;
 use SimpleSAML\CAS\XML\AuthenticationDate;
 use SimpleSAML\CAS\XML\AuthenticationSuccess;
@@ -32,6 +33,7 @@ use function strval;
  * @package simplesamlphp/xml-cas
  */
 #[CoversClass(ServiceResponse::class)]
+#[CoversClass(AbstractServiceResponse::class)]
 #[CoversClass(AbstractCasElement::class)]
 final class ServiceResponseTest extends TestCase
 {

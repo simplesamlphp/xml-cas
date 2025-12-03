@@ -7,6 +7,7 @@ namespace SimpleSAML\CAS\Test\XML;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\AbstractCasElement;
+use SimpleSAML\CAS\XML\AbstractProxySuccess;
 use SimpleSAML\CAS\XML\AbstractResponse;
 use SimpleSAML\CAS\XML\ProxySuccess;
 use SimpleSAML\CAS\XML\ProxyTicket;
@@ -23,6 +24,7 @@ use function strval;
  * @package simplesamlphp/xml-cas
  */
 #[CoversClass(ProxySuccess::class)]
+#[CoversClass(AbstractProxySuccess::class)]
 #[CoversClass(AbstractResponse::class)]
 #[CoversClass(AbstractCasElement::class)]
 final class ProxySuccessTest extends TestCase

@@ -7,6 +7,7 @@ namespace SimpleSAML\CAS\Test\XML;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\CAS\XML\AbstractCasElement;
+use SimpleSAML\CAS\XML\AbstractProxies;
 use SimpleSAML\CAS\XML\Proxies;
 use SimpleSAML\CAS\XML\Proxy;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -22,6 +23,7 @@ use function strval;
  * @package simplesamlphp/xml-cas
  */
 #[CoversClass(Proxies::class)]
+#[CoversClass(AbstractProxies::class)]
 #[CoversClass(AbstractCasElement::class)]
 final class ProxiesTest extends TestCase
 {

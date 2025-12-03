@@ -19,33 +19,9 @@ use function array_merge;
  *
  * @package simplesamlphp/xml-cas
  */
-final class ServiceResponse extends AbstractCasElement implements SchemaValidatableElementInterface
+final class ServiceResponse extends AbstractServiceResponse implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
-
-
-    /** @var string */
-    final public const LOCALNAME = 'serviceResponse';
-
-
-    /**
-     * Initialize a cas:serviceResponse element
-     *
-     * @param \SimpleSAML\CAS\XML\AbstractResponse $response
-     */
-    final public function __construct(
-        protected AbstractResponse $response,
-    ) {
-    }
-
-
-    /**
-     * @return \SimpleSAML\CAS\XML\AbstractResponse
-     */
-    public function getResponse(): AbstractResponse
-    {
-        return $this->response;
-    }
 
 
     /**
@@ -85,21 +61,5 @@ final class ServiceResponse extends AbstractCasElement implements SchemaValidata
         );
 
         return new static($response[0]);
-    }
-
-
-    /**
-     * Convert this ServiceResponse to XML.
-     *
-     * @param \DOMElement|null $parent The element we should append this ServiceResponse to.
-     * @return \DOMElement
-     */
-    public function toXML(?DOMElement $parent = null): DOMElement
-    {
-        $e = $this->instantiateParentElement($parent);
-
-        $this->getResponse()->toXML($e);
-
-        return $e;
     }
 }
