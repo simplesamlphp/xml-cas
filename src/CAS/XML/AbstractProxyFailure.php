@@ -19,11 +19,9 @@ abstract class AbstractProxyFailure extends AbstractResponse
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = StringValue::class;
+    public const string TEXTCONTENT_TYPE = StringValue::class;
 
-    /** @var string */
-    final public const LOCALNAME = 'proxyFailure';
+    final public const string LOCALNAME = 'proxyFailure';
 
 
     /**

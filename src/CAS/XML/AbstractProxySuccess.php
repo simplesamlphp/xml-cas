@@ -13,8 +13,7 @@ use DOMElement;
  */
 abstract class AbstractProxySuccess extends AbstractResponse
 {
-    /** @var string */
-    final public const LOCALNAME = 'proxySuccess';
+    final public const string LOCALNAME = 'proxySuccess';
 
 
     /**

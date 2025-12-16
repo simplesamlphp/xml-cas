@@ -16,8 +16,7 @@ use SimpleSAML\XMLSchema\Exception\MissingElementException;
  */
 abstract class AbstractProxies extends AbstractCasElement
 {
-    /** @var string */
-    final public const LOCALNAME = 'proxies';
+    final public const string LOCALNAME = 'proxies';
 
 
     /**

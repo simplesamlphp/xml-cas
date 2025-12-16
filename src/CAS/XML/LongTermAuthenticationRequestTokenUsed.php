@@ -17,9 +17,7 @@ final class LongTermAuthenticationRequestTokenUsed extends AbstractCasElement
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = BooleanValue::class;
+    public const string TEXTCONTENT_TYPE = BooleanValue::class;
 
-    /** @var string */
-    final public const LOCALNAME = 'longTermAuthenticationRequestTokenUsed';
+    final public const string LOCALNAME = 'longTermAuthenticationRequestTokenUsed';
 }

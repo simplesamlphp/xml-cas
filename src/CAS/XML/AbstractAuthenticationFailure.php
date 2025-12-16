@@ -19,11 +19,9 @@ abstract class AbstractAuthenticationFailure extends AbstractResponse
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = StringValue::class;
+    public const string TEXTCONTENT_TYPE = StringValue::class;
 
-    /** @var string */
-    final public const LOCALNAME = 'authenticationFailure';
+    final public const string LOCALNAME = 'authenticationFailure';
 
 
     /**

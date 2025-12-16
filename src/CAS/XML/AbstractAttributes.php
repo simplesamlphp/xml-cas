@@ -19,14 +19,13 @@ abstract class AbstractAttributes extends AbstractCasElement
     use ExtendableElementTrait;
 
 
-    /** @var string */
-    final public const LOCALNAME = 'attributes';
+    final public const string LOCALNAME = 'attributes';
 
     /** The namespace-attribute for the xs:any element */
-    final public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+    final public const string XS_ANY_ELT_NAMESPACE = NS::ANY;
 
     /** The exclusions for the xs:any element */
-    final public const XS_ANY_ELT_EXCLUSIONS = [
+    final public const array XS_ANY_ELT_EXCLUSIONS = [
         [C::NS_CAS, 'authenticationDate'],
         [C::NS_CAS, 'longTermAuthenticationRequestTokenUsed'],
         [C::NS_CAS, 'isFromNewLogin'],
