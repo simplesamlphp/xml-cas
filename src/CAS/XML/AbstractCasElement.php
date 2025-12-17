@@ -14,12 +14,9 @@ use SimpleSAML\XML\AbstractElement;
  */
 abstract class AbstractCasElement extends AbstractElement
 {
-    /** @var string */
-    public const NS = C::NS_CAS;
+    public const string NS = C::NS_CAS;
 
-    /** @var string */
-    public const NS_PREFIX = 'cas';
+    public const string NS_PREFIX = 'cas';
 
-    /** @var string */
-    public const SCHEMA = 'resources/schemas/cas-server-protocol-3.0.xsd';
+    public const string SCHEMA = 'resources/schemas/cas-server-protocol-3.0.xsd';
 }

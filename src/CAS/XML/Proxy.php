@@ -17,9 +17,7 @@ final class Proxy extends AbstractCasElement
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = StringValue::class;
+    public const string TEXTCONTENT_TYPE = StringValue::class;
 
-    /** @var string */
-    final public const LOCALNAME = 'proxy';
+    final public const string LOCALNAME = 'proxy';
 }

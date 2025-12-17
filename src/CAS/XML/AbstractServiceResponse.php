@@ -13,8 +13,7 @@ use DOMElement;
  */
 abstract class AbstractServiceResponse extends AbstractCasElement
 {
-    /** @var string */
-    final public const LOCALNAME = 'serviceResponse';
+    final public const string LOCALNAME = 'serviceResponse';
 
 
     /**

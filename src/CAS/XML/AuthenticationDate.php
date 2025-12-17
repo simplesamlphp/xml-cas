@@ -18,8 +18,7 @@ use function strval;
  */
 final class AuthenticationDate extends AbstractCasElement
 {
-    /** @var string */
-    final public const LOCALNAME = 'authenticationDate';
+    final public const string LOCALNAME = 'authenticationDate';
 
 
     /**

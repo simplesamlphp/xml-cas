@@ -12,8 +12,7 @@ use SimpleSAML\XMLSchema\Type\StringValue;
  */
 class CodeValue extends StringValue
 {
-    /** @var string */
-    public const SCHEMA_TYPE = 'string';
+    public const string SCHEMA_TYPE = 'string';
 
 
     /**

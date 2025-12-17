@@ -17,9 +17,7 @@ final class IsFromNewLogin extends AbstractCasElement
     use TypedTextContentTrait;
 
 
-    /** @var string */
-    public const TEXTCONTENT_TYPE = BooleanValue::class;
+    public const string TEXTCONTENT_TYPE = BooleanValue::class;
 
-    /** @var string */
-    final public const LOCALNAME = 'isFromNewLogin';
+    final public const string LOCALNAME = 'isFromNewLogin';
 }
