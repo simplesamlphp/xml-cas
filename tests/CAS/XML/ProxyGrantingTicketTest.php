@@ -10,7 +10,6 @@ use SimpleSAML\CAS\XML\AbstractCasElement;
 use SimpleSAML\CAS\XML\ProxyGrantingTicket;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -43,7 +42,7 @@ final class ProxyGrantingTicketTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $proxyGrantingTicket = new ProxyGrantingTicket(StringValue::fromString('PGTIOU-84678-8a9d...'));
+        $proxyGrantingTicket = ProxyGrantingTicket::fromString('PGTIOU-84678-8a9d...');
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

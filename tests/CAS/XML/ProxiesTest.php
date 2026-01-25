@@ -12,7 +12,6 @@ use SimpleSAML\CAS\XML\Proxies;
 use SimpleSAML\CAS\XML\Proxy;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -46,8 +45,8 @@ final class ProxiesTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $entry1 = new Proxy(StringValue::fromString('https://example.org/proxy/1'));
-        $entry2 = new Proxy(StringValue::fromString('https://example.org/proxy/2'));
+        $entry1 = Proxy::fromString('https://example.org/proxy/1');
+        $entry2 = Proxy::fromString('https://example.org/proxy/2');
         $list = new Proxies([$entry1, $entry2]);
 
         $this->assertEquals(

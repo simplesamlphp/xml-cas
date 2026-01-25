@@ -59,8 +59,8 @@ final class AttributesTest extends TestCase
     public function testMarshalling(): void
     {
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
-        $longTerm = new LongTermAuthenticationRequestTokenUsed(BooleanValue::fromString('true'));
-        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
+        $longTerm = LongTermAuthenticationRequestTokenUsed::fromString('true');
+        $isFromNewLogin = IsFromNewLogin::fromString('true');
         $document = DOMDocumentFactory::fromString(
             '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         );

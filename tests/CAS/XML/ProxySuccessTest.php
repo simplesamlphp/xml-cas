@@ -13,7 +13,6 @@ use SimpleSAML\CAS\XML\ProxySuccess;
 use SimpleSAML\CAS\XML\ProxyTicket;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -49,7 +48,7 @@ final class ProxySuccessTest extends TestCase
     public function testMarshalling(): void
     {
         $proxySuccess = new ProxySuccess(
-            new ProxyTicket(StringValue::fromString('PT-1856392-b98xZrQN4p90ASrw96c8')),
+            ProxyTicket::fromString('PT-1856392-b98xZrQN4p90ASrw96c8'),
         );
 
         $this->assertEquals(

@@ -10,7 +10,6 @@ use SimpleSAML\CAS\XML\AbstractCasElement;
 use SimpleSAML\CAS\XML\User;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -43,7 +42,7 @@ final class UserTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $user = new User(StringValue::fromString('username'));
+        $user = User::fromString('username');
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

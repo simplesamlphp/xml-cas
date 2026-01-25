@@ -20,9 +20,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\BooleanValue;
 use SimpleSAML\XMLSchema\Type\DateTimeValue;
-use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -70,8 +68,8 @@ final class ServiceResponseTest extends TestCase
     public function testMarshalling(): void
     {
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
-        $longTerm = new LongTermAuthenticationRequestTokenUsed(BooleanValue::fromString('true'));
-        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
+        $longTerm = LongTermAuthenticationRequestTokenUsed::fromString('true');
+        $isFromNewLogin = IsFromNewLogin::fromString('true');
 
         /** @var \DOMElement $element */
         $element = DOMDocumentFactory::fromString(
@@ -80,9 +78,9 @@ final class ServiceResponseTest extends TestCase
         $myAttribute = new Chunk($element);
 
         $authenticationSuccess = new Authenticationsuccess(
-            new User(StringValue::fromString('username')),
+            User::fromString('username'),
             new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]),
-            new ProxyGrantingTicket(StringValue::fromString('PGTIOU-84678-8a9d...')),
+            ProxyGrantingTicket::fromString('PGTIOU-84678-8a9d...'),
         );
         $serviceResponse = new ServiceResponse($authenticationSuccess);
 

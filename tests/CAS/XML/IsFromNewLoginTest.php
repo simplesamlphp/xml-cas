@@ -10,7 +10,6 @@ use SimpleSAML\CAS\XML\AbstractCasElement;
 use SimpleSAML\CAS\XML\IsFromNewLogin;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\BooleanValue;
 
 use function dirname;
 use function strval;
@@ -43,7 +42,7 @@ final class IsFromNewLoginTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $isFromNewLogin = new IsFromNewLogin(BooleanValue::fromString('true'));
+        $isFromNewLogin = IsFromNewLogin::fromString('true');
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
