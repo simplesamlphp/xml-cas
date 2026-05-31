@@ -49,9 +49,10 @@ final class ProxiesTest extends TestCase
         $entry2 = Proxy::fromString('https://example.org/proxy/2');
         $list = new Proxies([$entry1, $entry2]);
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($list),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($list);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

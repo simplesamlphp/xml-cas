@@ -44,9 +44,10 @@ final class ProxyTicketTest extends TestCase
     {
         $proxyTicket = ProxyTicket::fromString('PT-1856392-b98xZrQN4p90ASrw96c8');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($proxyTicket),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($proxyTicket);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

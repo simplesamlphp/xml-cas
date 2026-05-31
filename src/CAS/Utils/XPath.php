@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\Utils;
 
-use DOMNode;
-use DOMXPath;
+use Dom;
 use SimpleSAML\CAS\Constants as C;
 
 /**
@@ -16,21 +15,21 @@ use SimpleSAML\CAS\Constants as C;
 class XPath extends \SimpleSAML\XPath\XPath
 {
     /**
-     * Get a DOMXPath object that can be used to search for CAS elements.
+     * Get a Dom\XPath object that can be used to search for CAS elements.
      *
-     * @param \DOMNode $node The document to associate to the DOMXPath object.
+     * @param \Dom\Node $node The document to associate to the Dom\XPath object.
      * @param bool $autoregister Whether to auto-register all namespaces used in the document
      *
-     * @return \DOMXPath A DOMXPath object ready to use in the given document, with several
+     * @return \Dom\XPath A Dom\XPath object ready to use in the given document, with several
      *   cas-related namespaces already registered.
      */
-    public static function getXPath(DOMNode $node, bool $autoregister = false): DOMXPath
+    public static function getXPath(Dom\Node $node, bool $autoregister = false): Dom\XPath
     {
         $xp = parent::getXPath($node, $autoregister);
 
         /*
          * - Registering 'cas' to the same URI again is fine.
-         * - If someone previously bound 'cas' to a different URI on the same DOMXPath,
+         * - If someone previously bound 'cas' to a different URI on the same Dom\XPath,
          *   your call will change its meaning for subsequent queries
          * */
         $xp->registerNamespace('cas', C::NS_CAS);
