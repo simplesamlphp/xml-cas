@@ -64,20 +64,20 @@ final class AuthenticationSuccessTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        /** @var \DOMElement $firstNameElt */
+        /** @var \Dom\Element $firstNameElt */
         $firstNameElt = DOMDocumentFactory::fromString(
             '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>',
         )->documentElement;
 
         $firstName = new Chunk($firstNameElt);
 
-        /** @var \DOMElement $lastNameElt */
+        /** @var \Dom\Element $lastNameElt */
         $lastNameElt = DOMDocumentFactory::fromString(
             '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>',
         )->documentElement;
         $lastName = new Chunk($lastNameElt);
 
-        /** @var \DOMElement $emailElt */
+        /** @var \Dom\Element $emailElt */
         $emailElt = DOMDocumentFactory::fromString(
             '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>',
         )->documentElement;
@@ -97,29 +97,30 @@ final class AuthenticationSuccessTest extends TestCase
 
         $authenticationSuccess = new AuthenticationSuccess($user, $attributes, $proxyGrantingTicket, $proxies);
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($authenticationSuccess),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($authenticationSuccess);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 
 
     public function testMarshallingElementOrdering(): void
     {
-        /** @var \DOMElement $firstNameElt */
+        /** @var \Dom\Element $firstNameElt */
         $firstNameElt = DOMDocumentFactory::fromString(
             '<cas:firstname xmlns:cas="http://www.yale.edu/tp/cas">John</cas:firstname>',
         )->documentElement;
 
         $firstName = new Chunk($firstNameElt);
 
-        /** @var \DOMElement $lastNameElt */
+        /** @var \Dom\Element $lastNameElt */
         $lastNameElt = DOMDocumentFactory::fromString(
             '<cas:lastname xmlns:cas="http://www.yale.edu/tp/cas">Doe</cas:lastname>',
         )->documentElement;
         $lastName = new Chunk($lastNameElt);
 
-        /** @var \DOMElement $emailElt */
+        /** @var \Dom\Element $emailElt */
         $emailElt = DOMDocumentFactory::fromString(
             '<cas:email xmlns:cas="http://www.yale.edu/tp/cas">jdoe@example.org</cas:email>',
         )->documentElement;
@@ -146,7 +147,7 @@ final class AuthenticationSuccessTest extends TestCase
         $this->assertCount(1, $authenticationSuccessElements);
 
         // Test ordering of cas:authenticationSuccess contents
-        /** @var \DOMElement[] $authenticationSuccessElements */
+        /** @var \Dom\Element[] $authenticationSuccessElements */
         $authenticationSuccessElements = XPath::xpQuery(
             $authenticationSuccessElement,
             './cas:user/following-sibling::*',

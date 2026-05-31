@@ -14,7 +14,7 @@
         "ext-dom": "*",
 
         "simplesamlphp/assert": "~2.0",
-        "simplesamlphp/xml-common": "~2.0"
+        "simplesamlphp/xml-common": "dev-feature/dom-migration-php84"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "~1.11"
@@ -31,7 +31,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "v2.0.x-dev"
+            "dev-master": "v3.0.x-dev"
         }
     },
     "config": {
