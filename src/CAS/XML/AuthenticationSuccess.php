@@ -9,7 +9,7 @@ use SimpleSAML\CAS\Assert\Assert;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 
-use function array_pop;
+use function array_last;
 
 /**
  * Class for CAS authenticationSuccess
@@ -56,8 +56,8 @@ final class AuthenticationSuccess extends AbstractAuthenticationSuccess
         return new static(
             $user[0],
             $attributes[0],
-            array_pop($proxyGrantingTicket),
-            array_pop($proxies),
+            array_last($proxyGrantingTicket),
+            array_last($proxies),
         );
     }
 }
