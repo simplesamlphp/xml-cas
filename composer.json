@@ -10,14 +10,14 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.5",
         "ext-dom": "*",
 
-        "simplesamlphp/assert": "~2.0",
-        "simplesamlphp/xml-common": "~2.8"
+        "simplesamlphp/assert": "~3.0",
+        "simplesamlphp/xml-common": "~3.0"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "~1.11"
+        "simplesamlphp/simplesamlphp-test-framework": "~2.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +31,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "v2.0.x-dev"
+            "dev-master": "v3.0.x-dev"
         }
     },
     "config": {

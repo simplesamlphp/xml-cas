@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
@@ -80,10 +80,10 @@ abstract class AbstractAttributes extends AbstractCasElement
     /**
      * Convert this Attributes to XML.
      *
-     * @param \DOMElement|null $parent The element we should append this Attributes to.
-     * @return \DOMElement
+     * @param \Dom\Element|null $parent The element we should append this Attributes to.
+     * @return \Dom\Element
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

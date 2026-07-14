@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\CAS\Assert\Assert;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 
-use function array_pop;
+use function array_last;
 
 /**
  * Class for CAS authenticationSuccess
@@ -21,7 +21,7 @@ final class AuthenticationSuccess extends AbstractAuthenticationSuccess
     /**
      * Convert XML into a cas:authenticationSuccess-element
      *
-     * @param \DOMElement $xml The XML element we should load
+     * @param \Dom\Element $xml The XML element we should load
      * @return static
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
@@ -29,7 +29,7 @@ final class AuthenticationSuccess extends AbstractAuthenticationSuccess
      * @throws \SimpleSAML\XMLSchema\Exception\MissingAttributeException
      *   if the supplied element is missing one of the mandatory attributes
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::getNamespaceURI(), InvalidDOMElementException::class);
@@ -56,8 +56,8 @@ final class AuthenticationSuccess extends AbstractAuthenticationSuccess
         return new static(
             $user[0],
             $attributes[0],
-            array_pop($proxyGrantingTicket),
-            array_pop($proxies),
+            array_last($proxyGrantingTicket),
+            array_last($proxies),
         );
     }
 }

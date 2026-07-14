@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\CAS\Assert\Assert;
 use SimpleSAML\CAS\Constants as C;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
@@ -45,10 +45,10 @@ abstract class AbstractProxies extends AbstractCasElement
     /**
      * Convert this Proxies to XML.
      *
-     * @param \DOMElement|null $parent The element we should append this Proxies to.
-     * @return \DOMElement
+     * @param \Dom\Element|null $parent The element we should append this Proxies to.
+     * @return \Dom\Element
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 
