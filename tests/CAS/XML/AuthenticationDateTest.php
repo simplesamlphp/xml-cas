@@ -51,9 +51,10 @@ final class AuthenticationDateTest extends TestCase
     {
         $authenticationDate = new AuthenticationDate(self::$authenticationDate);
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($authenticationDate),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($authenticationDate);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

@@ -65,7 +65,7 @@ final class AttributesTest extends TestCase
             '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         );
 
-        /** @var \DOMElement $elt */
+        /** @var \Dom\Element $elt */
         $elt = $document->documentElement;
         $myAttribute = new Chunk($elt);
 
@@ -73,7 +73,7 @@ final class AttributesTest extends TestCase
             '<ssp:myOtherAttribute xmlns:ssp="urn:x-simplesamlphp:namespace">myOtherValue</ssp:myOtherAttribute>',
         );
 
-        /** @var \DOMElement $elt */
+        /** @var \Dom\Element $elt */
         $elt = $document->documentElement;
         $myOtherAttribute = new Chunk($elt);
 
@@ -84,10 +84,11 @@ final class AttributesTest extends TestCase
             [$myAttribute, $myOtherAttribute],
         );
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($attributes),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($attributes);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 
 
@@ -100,7 +101,7 @@ final class AttributesTest extends TestCase
             '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         );
 
-        /** @var \DOMElement $elt */
+        /** @var \Dom\Element $elt */
         $elt = $document->documentElement;
         $myAttribute = new Chunk($elt);
         $attributes = new Attributes($authenticationDate, $longTerm, $isFromNewLogin, [$myAttribute]);
@@ -113,7 +114,7 @@ final class AttributesTest extends TestCase
         $this->assertCount(1, $attributesElements);
 
         // Test ordering of cas:attributes contents
-        /** @var \DOMElement[] $attributesElements */
+        /** @var \Dom\Element[] $attributesElements */
         $attributesElements = XPath::xpQuery(
             $attributesElement,
             './cas:authenticationDate/following-sibling::*',

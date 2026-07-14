@@ -44,9 +44,10 @@ final class ProxyGrantingTicketTest extends TestCase
     {
         $proxyGrantingTicket = ProxyGrantingTicket::fromString('PGTIOU-84678-8a9d...');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($proxyGrantingTicket),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($proxyGrantingTicket);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

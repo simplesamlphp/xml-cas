@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\XML;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\CAS\Type\CodeValue;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Type\StringValue;
@@ -52,10 +52,10 @@ abstract class AbstractAuthenticationFailure extends AbstractResponse
     /**
      * Convert this AuthenticationFailure to XML.
      *
-     * @param \DOMElement|null $parent The element we should append to.
-     * @return \DOMElement This AuthenticatioFailure-element.
+     * @param \Dom\Element|null $parent The element we should append to.
+     * @return \Dom\Element This AuthenticatioFailure-element.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

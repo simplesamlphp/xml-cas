@@ -44,9 +44,10 @@ final class IsFromNewLoginTest extends TestCase
     {
         $isFromNewLogin = IsFromNewLogin::fromString('true');
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($isFromNewLogin),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($isFromNewLogin);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

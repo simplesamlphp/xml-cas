@@ -71,7 +71,7 @@ final class ServiceResponseTest extends TestCase
         $longTerm = LongTermAuthenticationRequestTokenUsed::fromString('true');
         $isFromNewLogin = IsFromNewLogin::fromString('true');
 
-        /** @var \DOMElement $element */
+        /** @var \Dom\Element $element */
         $element = DOMDocumentFactory::fromString(
             '<cas:myAttribute xmlns:cas="http://www.yale.edu/tp/cas">myValue</cas:myAttribute>',
         )->documentElement;
@@ -84,9 +84,10 @@ final class ServiceResponseTest extends TestCase
         );
         $serviceResponse = new ServiceResponse($authenticationSuccess);
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($serviceResponse),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($serviceResponse);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }

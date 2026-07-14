@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\CAS\XML;
 
-use DOMElement;
+use Dom;
 
 /**
  * Class for CAS proxySuccess
@@ -39,10 +39,10 @@ abstract class AbstractProxySuccess extends AbstractResponse
     /**
      * Convert this ProxySuccess to XML.
      *
-     * @param \DOMElement|null $parent The element we should append to.
-     * @return \DOMElement This ProxySuccess-element.
+     * @param \Dom\Element|null $parent The element we should append to.
+     * @return \Dom\Element This ProxySuccess-element.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 

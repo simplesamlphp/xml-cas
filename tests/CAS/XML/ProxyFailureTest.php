@@ -54,9 +54,10 @@ final class ProxyFailureTest extends TestCase
             CodeValue::fromEnum(ErrorEnum::INVALID_REQUEST),
         );
 
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($proxyFailure),
-        );
+        $expectedXml = self::$xmlRepresentation->saveXml(self::$xmlRepresentation->documentElement);
+        $this->assertNotFalse($expectedXml);
+        $actualXml = strval($proxyFailure);
+
+        $this->assertXmlStringEqualsXmlString($expectedXml, $actualXml);
     }
 }
